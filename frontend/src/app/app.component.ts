@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AppHttpService } from './app-http.service';
 
 @Component({
@@ -6,16 +6,15 @@ import { AppHttpService } from './app-http.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   constructor(private http: AppHttpService) {}
   data: any;
 
-  ngOnInit(): void {
+  click() {
     this.http.getData().subscribe({
       next: (data) => {
         this.data = data;
       },
     });
   }
-
 }

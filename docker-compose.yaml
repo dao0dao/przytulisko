@@ -1,0 +1,19 @@
+services:
+  frontend:
+    container_name: przytulisko-frontend
+    build:
+      context: ./frontend
+      dockerfile: ../dockerfiles/frontend.dockerfile
+    volumes:
+      - ./frontend/src:/app/src
+    ports:
+      - '4200:4200'
+  backend:
+    container_name: przytulisko-backend
+    build:
+      context: ./backend
+      dockerfile: ../dockerfiles/backend.dockerfile
+    volumes:
+      - ./backend/dist:/app/dist
+    ports:
+      - '3000:3000'
