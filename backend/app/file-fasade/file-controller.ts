@@ -1,6 +1,4 @@
 import * as http from "http";
-import { readFile } from "node:fs/promises";
-import * as path from "node:path";
 import { getFileNameFromUrl } from "./get-file-name.factory";
 import { notFound } from "../shared/default-responses";
 import { getFile } from "./get-file.factory";
