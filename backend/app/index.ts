@@ -1,23 +1,15 @@
 import * as http from "http";
-import * as mysql from "mysql2";
+import { appMainUrlSwitch } from "./app-main-url-switch";
 
 const port = 3000;
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "text/plain");
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  if (req.method === "GET" && req.url === "/") {
-    res.end("Witaj, świecie!");
-  } else {
-    res.statusCode = 404;
-    res.end("Nie znaleziono strony!\n");
+const server = http.createServer((req: http.IncomingMessage, res) => {
+  if ("dev" === process.env.MODE) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
   }
+  return appMainUrlSwitch(req, res);
 });
 
 server.listen(port, "0.0.0.0", () => {
-  console.log(`Serwer działa na http://localhost:${port}`);
+  console.log(`Serwer działa na http://localhost:${port} działa?`);
 });

@@ -7,7 +7,9 @@ import { AppHttpService } from './app-http.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(private http: AppHttpService) {}
+  constructor(private http: AppHttpService) {
+    console.log(window.location)
+  }
   data: any;
 
   click() {
