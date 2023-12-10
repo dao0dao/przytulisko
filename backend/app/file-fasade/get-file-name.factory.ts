@@ -4,7 +4,11 @@ export const getFileNameFromUrl = (url?: string) => {
   }
   const lastSlashIndex = url.lastIndexOf("/");
   if (-1 === lastSlashIndex) {
-    return url;
+    console.log(url, -1);
+    return "index.html";
+  }
+  if ("" === url.slice(lastSlashIndex + 1)) {
+    return "index.html";
   }
   return url.slice(lastSlashIndex + 1);
 };
