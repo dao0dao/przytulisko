@@ -4,7 +4,7 @@ import * as path from "node:path";
 import { getFileNameFromUrl } from "./get-file-name.factory";
 import { notFound } from "../shared/default-responses";
 import { getFile } from "./get-file.factory";
-import { getFileContentType } from "./file-conent-type.factory";
+import { getFileContentType } from "./file-content-type.factory";
 
 export const fileController = async (req: http.IncomingMessage, res: http.ServerResponse) => {
   const { url } = req;
