@@ -1,6 +1,6 @@
 import * as http from "http";
+import * as mysql from "mysql2";
 
-const hostname = "0.0.0.0";
 const port = 3000;
 
 const server = http.createServer((req, res) => {
@@ -18,6 +18,6 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Serwer działa na http://${hostname}:${port}/`);
+server.listen(port, "0.0.0.0", () => {
+  console.log(`Serwer działa na http://localhost:${port}`);
 });
