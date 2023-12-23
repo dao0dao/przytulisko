@@ -1,0 +1,47 @@
+@import "src/colors.scss";
+nav {
+    padding: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.logo {
+    max-width: 60px;
+    margin-right: auto;
+}
+.burger {
+    overflow: hidden;
+    height: 30px;
+    width: 40px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    background-color: transparent;
+    .line {
+        height: 5px;
+        background-color: $colorOne;
+        border-radius: 20px;
+        transform-origin: left center;
+        transition:
+            transform 0.25s ease-in-out,
+            opacity 0.25s ease-in-out;
+        &--top {
+            &--active {
+                transform: translateX(5px) rotate(40deg);
+            }
+        }
+        &--mid {
+            &--active {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+        }
+        &--bot {
+            &--active {
+                transform: translateX(5px) rotate(-40deg);
+            }
+        }
+    }
+}

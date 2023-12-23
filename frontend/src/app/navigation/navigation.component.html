@@ -1,0 +1,24 @@
+<nav>
+    <img
+        class="logo"
+        src="assets/images/logo.png"
+        alt="logo"
+    >
+    <button
+        class="burger"
+        (click)="toggleNavigation()"
+    >
+        <span
+            class="line line--top"
+            [ngClass]="{'line--top--active': isNavigationOpen}"
+        ></span>
+        <span
+            class="line line--mid"
+            [ngClass]="{'line--mid--active': isNavigationOpen}"
+        ></span>
+        <span
+            class="line line--bot"
+            [ngClass]="{'line--bot--active': isNavigationOpen}"
+        ></span>
+    </button>
+</nav>
