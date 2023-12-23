@@ -9,9 +9,10 @@ import {
   HttpClientModule,
 } from '@angular/common/http';
 import { ApiInterceptor } from './api-interceptor.interceptor';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NavigationComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },

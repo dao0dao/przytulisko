@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { AppHttpService } from './app-http.service';
 
 @Component({
@@ -7,16 +7,8 @@ import { AppHttpService } from './app-http.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(private http: AppHttpService) {
-    console.log(window.location)
-  }
+  @HostBinding('style.height') readonly hostHeight = window.innerHeight + 'px';
   data: any;
 
-  click() {
-    this.http.getData().subscribe({
-      next: (data) => {
-        this.data = data;
-      },
-    });
-  }
+  constructor(private http: AppHttpService) {}
 }
