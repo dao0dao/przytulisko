@@ -1,24 +1,64 @@
-<nav>
-    <img
-        class="logo"
-        src="assets/images/logo.png"
-        alt="logo"
-    >
-    <button
-        class="burger"
-        (click)="toggleNavigation()"
-    >
-        <span
-            class="line line--top"
-            [ngClass]="{'line--top--active': isNavigationOpen}"
-        ></span>
-        <span
-            class="line line--mid"
-            [ngClass]="{'line--mid--active': isNavigationOpen}"
-        ></span>
-        <span
-            class="line line--bot"
-            [ngClass]="{'line--bot--active': isNavigationOpen}"
-        ></span>
-    </button>
-</nav>
+<div class="container">
+    <nav>
+        <img
+            class="logo"
+            src="assets/images/logo.png"
+            alt="logo"
+        >
+        <p class="text">Przytulisko zwierząt</p>
+        <button
+            class="burger"
+            (click)="toggleNavigation()"
+        >
+            <span
+                class="line line--top"
+                [ngClass]="{'line--top--active': isNavigationOpen}"
+            ></span>
+            <span
+                class="line line--mid"
+                [ngClass]="{'line--mid--active': isNavigationOpen}"
+            ></span>
+            <span
+                class="line line--bot"
+                [ngClass]="{'line--bot--active': isNavigationOpen}"
+            ></span>
+        </button>
+    </nav>
+    <div class="navListContainer">
+        <div class="navList">
+            <a
+                class="elemnet"
+                href="#"
+            >
+                <svg>
+                    <use [attr.xlink:href]="'assets/vectors.svg#icon-cat-dog'"></use>
+                </svg>
+                <span>Nowi podopieczni</span>
+            </a>
+            <a
+                class="elemnet"
+                href="#"
+            >
+                <svg>
+                    <use [attr.xlink:href]="'assets/vectors.svg#icon-cat'"></use>
+                </svg>
+                <span>Koty do adopcji</span>
+            </a>
+            <a
+                class="elemnet"
+                href="#"
+            >
+                <svg>
+                    <use [attr.xlink:href]="'assets/vectors.svg#icon-dog'"></use>
+                </svg>
+                <span>Psy do adopcji</span>
+            </a>
+            <a
+                class="elemnet"
+                href="#"
+            >
+                Zaloguj się
+            </a>
+        </div>
+    </div>
+</div>
