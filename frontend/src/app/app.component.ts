@@ -1,5 +1,4 @@
-import { Component, HostBinding } from '@angular/core';
-import { AppHttpService } from './app-http.service';
+import { Component, HostBinding, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +6,11 @@ import { AppHttpService } from './app-http.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  @HostBinding('style.height') readonly hostHeight = window.innerHeight + 'px';
+  @HostBinding('style.height') private hostHeight = window.innerHeight + 'px';
+  @HostListener('window:resize') onResize() {
+    this.hostHeight = window.innerHeight + 'px';
+  }
   data: any;
 
-  constructor(private http: AppHttpService) {}
+  constructor() {}
 }
