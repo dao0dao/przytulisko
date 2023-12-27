@@ -9,3 +9,7 @@
 app-navigation {
     flex-shrink: 0;
 }
+.outlet {
+    overflow: auto;
+    flex-grow: 1;
+}
