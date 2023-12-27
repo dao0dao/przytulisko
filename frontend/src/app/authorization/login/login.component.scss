@@ -1,0 +1,12 @@
+@import "src/variables";
+:host {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+svg {
+    max-width: 30px;
+    max-height: 30px;
+    fill: $colorThree;
+}
