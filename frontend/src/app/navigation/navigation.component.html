@@ -24,41 +24,57 @@
             ></span>
         </button>
     </nav>
-    <div class="navListContainer">
+    <div
+        *ngIf="isNavigationOpen"
+        @container
+        class="navListContainer"
+    >
         <div class="navList">
-            <a
-                class="elemnet"
-                href="#"
+            <div
+                @elementOne
+                class="element"
             >
-                <svg>
-                    <use [attr.xlink:href]="'assets/vectors.svg#icon-cat-dog'"></use>
-                </svg>
-                <span>Nowi podopieczni</span>
-            </a>
-            <a
-                class="elemnet"
-                href="#"
+                <a href="#">
+                    <svg>
+                        <use [attr.xlink:href]="svgLink+'icon-cat-dog'"></use>
+                    </svg>
+                    <span>Nowi podopieczni</span>
+                </a>
+            </div>
+            <div
+                @elementTwo
+                class="element"
             >
-                <svg>
-                    <use [attr.xlink:href]="'assets/vectors.svg#icon-cat'"></use>
-                </svg>
-                <span>Koty do adopcji</span>
-            </a>
-            <a
-                class="elemnet"
-                href="#"
+                <a href="#">
+                    <svg>
+                        <use [attr.xlink:href]="svgLink+'icon-cat'"></use>
+                    </svg>
+                    <span>Koty do adopcji</span>
+                </a>
+            </div>
+            <div
+                @elementThree
+                class="element"
             >
-                <svg>
-                    <use [attr.xlink:href]="'assets/vectors.svg#icon-dog'"></use>
-                </svg>
-                <span>Psy do adopcji</span>
-            </a>
-            <a
-                class="elemnet"
-                href="#"
+
+                <a href="#">
+                    <svg>
+                        <use [attr.xlink:href]="svgLink+'icon-dog'"></use>
+                    </svg>
+                    <span>Psy do adopcji</span>
+                </a>
+            </div>
+            <div
+                @elementFour
+                class="element"
             >
-                Zaloguj się
-            </a>
+                <a href="#">
+                    <svg>
+                        <use [attr.xlink:href]="svgLink+'icon-user'"></use>
+                    </svg>
+                    <span>Zaloguj się</span>
+                </a>
+            </div>
         </div>
     </div>
 </div>

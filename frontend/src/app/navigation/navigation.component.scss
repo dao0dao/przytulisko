@@ -1,4 +1,7 @@
 @import "src/variables";
+.container {
+    position: relative;
+}
 nav {
     position: relative;
     z-index: 2;
@@ -53,17 +56,53 @@ nav {
     }
 }
 .navListContainer {
-    position: relative;
+    overflow: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    width: 100%;
     z-index: 1;
+    min-height: 285px;
     .navList {
         display: flex;
         flex-direction: column;
         align-items: center;
-        svg {
-            max-height: 50px;
-            max-width: 50px;
-            fill: $colorOne;
-            stroke: $colorOne;
+        .element {
+            position: relative;
+            width: 100%;
+            padding: 10px 0;
+            box-shadow: $botShadow;
+            background-color: white;
+            a {
+                max-width: 300px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                text-decoration: none;
+            }
+            svg {
+                max-height: 50px;
+                max-width: 50px;
+                fill: $colorOne;
+                stroke: $colorOne;
+            }
+            span {
+                margin: 0 auto;
+                color: $colorOne;
+            }
+            &:nth-child(1) {
+                z-index: 5;
+            }
+            &:nth-child(2) {
+                z-index: 4;
+            }
+            &:nth-child(3) {
+                z-index: 3;
+            }
+            &:nth-child(4) {
+                z-index: 1;
+            }
         }
     }
 }
