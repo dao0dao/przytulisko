@@ -11,9 +11,10 @@ import {
 import { ApiInterceptor } from './api-interceptor.interceptor';
 import { NavigationComponent } from './navigation/navigation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './authorization/login/login.component';
 
 @NgModule({
-  declarations: [AppComponent, NavigationComponent],
+  declarations: [AppComponent, NavigationComponent, LoginComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

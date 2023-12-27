@@ -15,4 +15,8 @@ export class NavigationComponent {
   toggleNavigation() {
     this.isNavigationOpen = !this.isNavigationOpen;
   }
+
+  closeNavigation() {
+    this.isNavigationOpen = false;
+  }
 }
