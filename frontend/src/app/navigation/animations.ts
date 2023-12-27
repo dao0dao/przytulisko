@@ -1,8 +1,8 @@
 import {
   animate,
   animateChild,
+  group,
   query,
-  sequence,
   style,
   transition,
   trigger,
@@ -11,20 +11,22 @@ import {
 export const animations = [
   trigger('container', [
     transition(':enter', [
-      sequence([
+      style({ opacity: 0 }),
+      group([
         query(
           '@elementOne, @elementTwo, @elementThree, @elementFour',
           animateChild()
         ),
+        animate('0.25s ease-in-out', style({ opacity: 1 })),
       ]),
     ]),
     transition(':leave', [
-      sequence([
+      group([
         query(
           '@elementOne, @elementTwo, @elementThree, @elementFour',
           animateChild()
         ),
-        animate('0.1s', style({ display: 'none' })),
+        animate('0.25s ease-in-out', style({ opacity: 0 })),
       ]),
     ]),
   ]),
