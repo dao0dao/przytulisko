@@ -1,14 +1,38 @@
-<form>
+<form
+    [formGroup]="loginForm"
+    (ngSubmit)="submit()"
+>
     <div class="block">
-        <input type="text" placeholder="adres email lub nick">
+        <input
+            type="text"
+            placeholder="adres email lub nick"
+            formControlName="email"
+        >
         <svg>
             <use [attr.xlink:href]="svgLink+'icon-login'"></use>
         </svg>
     </div>
     <div class="block">
-        <input type="password" placeholder="hasł">
+        <input
+            type="password"
+            placeholder="hasło"
+            formControlName="password"
+        >
         <svg>
             <use [attr.xlink:href]="svgLink+'icon-keys'"></use>
         </svg>
+    </div>
+    <div class="block">
+        <button
+            class="btn"
+            type="submit"
+            [disabled]="loginForm.invalid ? true : null"
+        >
+            Zaloguj
+        </button>
+    </div>
+    <div class="block">
+        <p>Nie masz konta?</p>
+        <a routerLink="/register">Zarejestruj się</a>
     </div>
 </form>

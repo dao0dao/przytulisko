@@ -8,4 +8,9 @@
 }
 button {
     cursor: pointer;
+    &[disabled] {
+        filter: grayscale(1);
+        cursor: auto;
+        pointer-events: none;
+    }
 }

@@ -5,8 +5,52 @@
     justify-content: center;
     align-items: center;
 }
-svg {
-    max-width: 30px;
-    max-height: 30px;
-    fill: $colorThree;
+.block {
+    position: relative;
+    margin: 25px 0;
+    svg {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        max-width: 30px;
+        max-height: 30px;
+        fill: $colorThree;
+        filter: drop-shadow($botShadow);
+    }
+    input {
+        padding: 10px 10px 10px 40px;
+        border-width: 0 0 2px 0;
+        border-color: $colorThree;
+        outline: none;
+        &:focus,
+        &:focus-visible {
+            border-color: $colorOne;
+            color: $colorOne;
+        }
+        &:focus + svg,
+        &:focus-visible + svg {
+            fill: $colorOne;
+            filter: drop-shadow($botShadowOne);
+        }
+    }
+    .btn {
+        margin-left: auto;
+        padding: 10px;
+        border: 1px solid $colorOne;
+        border-radius: 20px;
+        box-shadow: $botShadowOne;
+        display: block;
+        background-color: $colorOne;
+        color: white;
+    }
+    &:last-child {
+        p {
+            margin-right: 5px;
+            display: inline-block;
+        }
+        a {
+            color: $colorOne;
+        }
+    }
 }
