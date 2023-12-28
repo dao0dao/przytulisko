@@ -5,7 +5,8 @@ import { isFile } from "./shared/check-is-file";
 
 export const appMainController = (req: http.IncomingMessage, res: http.ServerResponse) => {
   const { url } = req;
-  if (url?.includes("/api")) {
+  console.log(url);
+  if (url?.includes("/api/login")) {
     res.statusCode = 200;
     res.end("Witaj, świecie!");
   } else if ("GET" === req.method && ("/" === url || isFile(url))) {
