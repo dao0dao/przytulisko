@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS przytulisko.admin
+(
+  id varchar(36) PRIMARY KEY,
+  login varchar(12) NOT NULL,
+  password varchar(100) NOT NULL,
+  super_admin BOOL NOT NULL DEFAULT 0
+);
+
