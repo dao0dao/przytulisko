@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node dist/server/index.js",
-    "server:dev": "nodemon dist/server/index.js"
+    "server:dev": "nodemon dist/server/index.js",
+    "initial-migrations": "node dist/server/migrations/initial-migrations.js"
   },
   "author": "Demid Greshnikov",
   "license": "ISC",

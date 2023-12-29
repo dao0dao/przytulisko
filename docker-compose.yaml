@@ -15,6 +15,7 @@ services:
       dockerfile: ../dockerfiles/backend.dockerfile
     volumes:
       - ./backend/dist:/app/dist
+      - ./backend/app/migrations/data:/app/dist/server/migrations/data
     ports:
       - '3000:3000'
     env_file:
