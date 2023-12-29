@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS przytulisko.migrations
+(
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  migration varchar(255) NOT NULL
+);
