@@ -10,3 +10,5 @@ const rootDir = () => {
 };
 
 export const APP_FRONT_STATIC_DIRECTORY = path.join(rootDir(), "frontend");
+export const APP_BACKEND_MIGRATIONS = path.join(rootDir(), "server", "migrations", "data");
+export const APP_BACKEND_SEEDS = path.join(rootDir(), "server", "migrations", "seeds");

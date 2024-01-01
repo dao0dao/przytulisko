@@ -1,14 +1,14 @@
 import { readFile, readdir } from "fs/promises";
 import { pool } from "../shared/db-pool";
 import { join, parse } from "path";
+import { APP_BACKEND_MIGRATIONS } from "../shared/file-directory";
 
-const path_to_folder = "./dist/server/migrations/data";
 
 const makeMigrations = async () => {
-  const files = await readdir(path_to_folder);
+  const files = await readdir(APP_BACKEND_MIGRATIONS);
   for (const [index, file] of files.entries()) {
     if (".txt" === parse(file).ext) {
-      const path_to_file = join(path_to_folder, file);
+      const path_to_file = join(APP_BACKEND_MIGRATIONS, file);
       const content = await readFile(path_to_file, "utf-8");
 
       pool.query(content, (err) => {
@@ -17,7 +17,6 @@ const makeMigrations = async () => {
         } else {
           console.log(`migracja wykonana: ${file}`);
         }
-
         if (index === files.length - 1) {
           pool.end();
         }

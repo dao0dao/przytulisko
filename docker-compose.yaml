@@ -16,6 +16,7 @@ services:
     volumes:
       - ./backend/dist:/app/dist
       - ./backend/app/migrations/data:/app/dist/server/migrations/data
+      - ./backend/app/migrations/seeds:/app/dist/server/migrations/seeds
     ports:
       - '3000:3000'
     env_file:

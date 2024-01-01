@@ -1,0 +1,9 @@
+INSERT IGNORE INTO przytulisko.admin (id, login, password, super_admin)
+SELECT 
+    '{{id}}',
+    'admin@admin',
+    '{{password}}',
+    1
+WHERE NOT EXISTS (
+    SELECT 1 FROM przytulisko.admin WHERE login = 'admin@admin'
+);

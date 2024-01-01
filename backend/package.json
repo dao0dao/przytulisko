@@ -7,12 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node dist/server/index.js",
     "server:dev": "nodemon dist/server/index.js",
-    "initial-migrations": "node dist/server/migrations/initial-migrations.js"
+    "set-database": "node dist/server/migrations/initial-migrations.js && node dist/server/migrations/initial-seeds.js"
   },
   "author": "Demid Greshnikov",
   "license": "ISC",
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20.10.2",
+    "@types/uuid": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "@typescript-eslint/parser": "^6.13.2",
     "eslint": "^8.55.0",
@@ -22,6 +24,8 @@
     "typescript": "^5.3.2"
   },
   "dependencies": {
-    "mysql2": "^3.6.5"
+    "bcrypt": "^5.1.1",
+    "mysql2": "^3.6.5",
+    "uuid": "^9.0.1"
   }
 }
