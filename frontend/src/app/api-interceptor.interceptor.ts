@@ -15,7 +15,9 @@ export class ApiInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    const cloneReq = request.clone({ withCredentials: isDevMode() });
-    return next.handle(request);
+    const cloneReq = request.clone({
+      withCredentials: isDevMode(),
+    });
+    return next.handle(cloneReq);
   }
 }

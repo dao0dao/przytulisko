@@ -6,6 +6,6 @@ export const apiLink = () => {
   if (isDevMode()) {
     return 'http://localhost:3000/api/';
   } else {
-    return window.location.host + '/api/';
+    return window.location.origin + '/api/';
   }
 };

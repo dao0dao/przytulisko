@@ -5,7 +5,8 @@ import { authorizationController } from "./authorization/authorization.controlle
 export const apiSwitchUrl = async (req: http.IncomingMessage, res: http.ServerResponse) => {
   let body = "";
   const long_url = req.url;
-  if (!long_url) {
+  const method = req.method;
+  if (!long_url || !method) {
     return notFound(res);
   }
   const routs = long_url.split("/").slice(1);
@@ -16,7 +17,7 @@ export const apiSwitchUrl = async (req: http.IncomingMessage, res: http.ServerRe
     const child_url = routs.slice(1).join("/");
     switch (routs[1]) {
       case "login":
-        authorizationController(child_url, res, body);
+        authorizationController(child_url, method, res, body);
         break;
       default:
         notFound(res);
