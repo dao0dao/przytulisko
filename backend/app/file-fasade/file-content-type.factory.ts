@@ -16,6 +16,9 @@ export const getFileContentType = (fileName: string) => {
     case ".txt":
       contentType = "text/plain";
       break;
+    case ".svg":
+      contentType = "image/svg+xml";
+      break;
     default:
       contentType = "text/html";
   }
