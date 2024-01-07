@@ -14,7 +14,7 @@ export class LoginComponent {
     email: ['', [Validators.required, Validators.email]],
     password: [
       '',
-      [Validators.required, Validators.minLength(6), Validators.maxLength(10)],
+      [Validators.required, Validators.minLength(5), Validators.maxLength(10)],
     ],
   });
 

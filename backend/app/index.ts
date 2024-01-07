@@ -9,6 +9,11 @@ const server = http.createServer((req, res) => {
     res.setHeader("Access-Control-Allow-Credentials", "true");
     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, *");
   }
+  if ("OPTIONS" === req.method) {
+    res.statusCode = 200;
+    res.end();
+    return;
+  }
   return appMainController(req, res);
 });
 
