@@ -1,6 +1,6 @@
 import * as http from "http";
 import { User } from "../../bundles/authorization/authorization.model";
-import { createNewCookie } from "../../bundles/coockie/cookie.factory";
+import { createNewCookie } from "../../bundles/cookie/cookie.factory";
 
 export const correctLoginResponse = async (res: http.ServerResponse, user: User) => {
   const data = { loginStatus: true };
