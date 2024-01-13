@@ -1,6 +1,8 @@
+import { BOOLEAN, Bcrypt, Uuid4 } from "../unique.type";
+
 export type User = {
-  id: string;
+  id: Uuid4;
   login: string;
-  password: string;
-  super_admin: 0 | 1;
+  password: Bcrypt;
+  super_admin: BOOLEAN;
 };

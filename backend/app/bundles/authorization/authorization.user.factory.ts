@@ -26,7 +26,7 @@ const checkIsUserExist = async (email: string) => {
   return result[0];
 };
 
-export const checkUserAuth = async (body: { email: string; password: string }) => {
+export const checkAuthAndUser = async (body: { email: string; password: string }) => {
   const user = await checkIsUserExist(body.email);
   if (!user) {
     return false;
@@ -35,5 +35,5 @@ export const checkUserAuth = async (body: { email: string; password: string }) =
   if (!is_correct_password) {
     return false;
   }
-  return true;
+  return user;
 };

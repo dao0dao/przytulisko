@@ -1,6 +1,6 @@
 import * as http from "http";
-import { checkUserAuth } from "../../bundles/authorization/authorization.user.factory";
-import { badRequest } from "../../shared/default-responses";
+import { checkAuthAndUser } from "../../bundles/authorization/authorization.user.factory";
+import { badRequest } from "../../bundles/default-responses/default-responses";
 import { correctLoginResponse } from "./authorization.response.factory";
 
 export const authorizationController = async (url: string, method: string, res: http.ServerResponse, body: any) => {
@@ -13,9 +13,9 @@ export const authorizationController = async (url: string, method: string, res: 
   } catch (error) {
     return badRequest(res);
   }
-  const is_correct_login = await checkUserAuth(parsedBody);
-  if (!is_correct_login) {
+  const user = await checkAuthAndUser(parsedBody);
+  if (!user) {
     return badRequest(res);
   }
-  correctLoginResponse(res);
+  correctLoginResponse(res, user);
 };

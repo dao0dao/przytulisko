@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS przytulisko.session (
+    id SERIAL PRIMARY KEY,
+    cookie_key varchar(100) NOT NULL,
+    user_id VARCHAR(36) NOT NULL,
+    expires DATETIME NOT NULL
+);

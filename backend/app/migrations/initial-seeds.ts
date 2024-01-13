@@ -4,6 +4,7 @@ import { join, parse } from "path";
 import { pool } from "../shared/db-pool";
 import * as crypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
+import { SALT_ROUNDS } from "../shared/varaibles";
 
 const seedFile = (content: string, file: string, currentFileIndex: number, lastFileIndex: number) => {
   pool.query(content, (err) => {
@@ -19,9 +20,8 @@ const seedFile = (content: string, file: string, currentFileIndex: number, lastF
 };
 
 const createAdmin = async (file: string, path_to_file: string, content: string, currentFileIndex: number, lastFileIndex: number) => {
-  const slatRounds = 10;
   const id = uuidv4();
-  const password = await crypt.hash("admin", slatRounds);
+  const password = await crypt.hash("admin", SALT_ROUNDS);
   content = content.replace("{{password}}", password).replace(/\{\{id\}\}/g, id);
   seedFile(content, file, currentFileIndex, lastFileIndex);
 };

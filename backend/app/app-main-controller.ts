@@ -1,8 +1,8 @@
 import * as http from "http";
-import { notFound } from "./shared/default-responses";
-import { fileController } from "./file-fasade/file-controller";
+import { notFound } from "./bundles/default-responses/default-responses";
 import { isFile } from "./shared/check-is-file";
 import { apiSwitchUrl } from "./api/api-switch-controller";
+import { fileController } from "./bundles/file-fasade/file-controller";
 
 export const appMainController = (req: http.IncomingMessage, res: http.ServerResponse) => {
   const { url } = req;

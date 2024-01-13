@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node dist/server/index.js",
     "server:dev": "nodemon dist/server/index.js",
-    "set-database": "node dist/server/migrations/initial-migrations.js && node dist/server/migrations/initial-seeds.js"
+    "set-database": "node dist/server/migrations/initial-migrations.js && node dist/server/migrations/initial-seeds.js",
+    "set-migrations": "node dist/server/migrations/initial-migrations.js"
   },
   "author": "Demid Greshnikov",
   "license": "ISC",

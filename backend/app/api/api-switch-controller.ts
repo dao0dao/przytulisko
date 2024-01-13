@@ -1,5 +1,5 @@
 import * as http from "http";
-import { notFound } from "../shared/default-responses";
+import { notFound } from "../bundles/default-responses/default-responses";
 import { authorizationController } from "./authorization/authorization.controller";
 
 export const apiSwitchUrl = async (req: http.IncomingMessage, res: http.ServerResponse) => {

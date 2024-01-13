@@ -1,6 +1,6 @@
 import * as http from "http";
 import { getFileNameFromUrl } from "./get-file-name.factory";
-import { notFound } from "../shared/default-responses";
+import { notFound } from "../default-responses/default-responses";
 import { getFile } from "./get-file.factory";
 import { getFileContentType } from "./file-content-type.factory";
 

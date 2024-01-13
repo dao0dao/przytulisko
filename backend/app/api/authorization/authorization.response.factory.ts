@@ -1,10 +1,11 @@
 import * as http from "http";
+import { User } from "../../bundles/authorization/authorization.model";
+import { createNewCookie } from "../../bundles/coockie/cookie.factory";
 
-export const correctLoginResponse = (res: http.ServerResponse) => {
+export const correctLoginResponse = async (res: http.ServerResponse, user: User) => {
   const data = { loginStatus: true };
   res.statusCode = 200;
-  const cookie = "session=wartosc+-ciasteczka; Max-Age=3600; Secure; HttpOnly; SameSite=Strict; path=/";
+  await createNewCookie(res, user);
   res.setHeader("Content-type", "application/json");
-  res.setHeader("Set-Cookie", cookie);
-  res.end(JSON.stringify(data));
+  res.end(JSON.stringify(data)); 
 };
