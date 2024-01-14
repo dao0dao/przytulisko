@@ -13,3 +13,10 @@ export const badRequest = (res: http.ServerResponse) => {
   res.end("Bad request");
   return;
 };
+
+export const internalError = (res: http.ServerResponse) => {
+  res.statusCode = 500;
+  res.setHeader("Content-Type", "text/plain");
+  res.end("Internal server error");
+  return;
+};

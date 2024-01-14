@@ -1,16 +1,12 @@
 import * as crypt from "bcrypt";
 import { pool } from "../../shared/db-pool";
 import { User } from "./authorization.model";
+import { sqlQuery } from "../../shared/sql-query";
 
-function sql(strings: TemplateStringsArray, ...values: [string]) {
-  return values.reduce((final_string, value, index) => {
-    return `${final_string}"${value}"${strings[index + 1]}`;
-  }, strings[0]);
-}
 
 const checkIsUserExist = async (email: string) => {
   const users = new Promise<User[] | false>((resolve) => {
-    const query = sql`SELECT * FROM przytulisko.admin WHERE login=${email} LIMIT 1;`;
+    const query = sqlQuery`SELECT * FROM przytulisko.admin WHERE login=${email} LIMIT 1;`;
     pool.query(query, (err, result) => {
       if (err) {
         resolve(false);
