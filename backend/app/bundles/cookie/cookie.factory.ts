@@ -4,34 +4,9 @@ import { User } from "../authorization/authorization.model";
 import * as bcrypt from "bcrypt";
 import { sqlQuery } from "../../shared/sql-query";
 import { pool } from "../../shared/db-pool";
+import { createExpiresSqlDate } from "../../shared/sql-date";
 
-const createExpiresSqlDate = () => {
-  const now = new Date().getTime() + 3600 * 1000;
-  const expireDate = new Date(now);
-  const year = expireDate.getFullYear();
-  let month = (expireDate.getMonth() + 1).toString();
-  if (1 === month.length) {
-    month = "0" + month;
-  }
-  let day = expireDate.getDate().toString();
-  if (1 === day.length) {
-    day = "0" + day;
-  }
-  let hours = expireDate.getHours().toString();
-  if (1 === hours.length) {
-    hours = "0" + hours;
-  }
-  let minutes = expireDate.getMinutes().toString();
-  if (1 === minutes.length) {
-    minutes = "0" + minutes;
-  }
-  let seconds = expireDate.getSeconds().toString();
-  if (1 === seconds.length) {
-    seconds = "0" + seconds;
-  }
-  const date = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-  return date;
-};
+
 
 export const createNewCookie = async (res: http.ServerResponse, user: User) => {
   const secret_one = "Chrząszcz";

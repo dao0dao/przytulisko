@@ -1,7 +1,10 @@
 import * as http from "http";
 import { appMainController } from "./app-main-controller";
+import { removeExpiredCookies } from "./clear-session";
 
 const port = 3000;
+const hour_interval = 3600 * 1000;
+// const hour_interval = 60 * 1000;
 
 const server = http.createServer((req, res) => {
   if ("dev" === process.env.MODE) {
@@ -19,4 +22,8 @@ const server = http.createServer((req, res) => {
 
 server.listen(port, "0.0.0.0", () => {
   console.log(`Serwer działa na http://localhost:${port}`);
+  setInterval(() => {
+    console.log("removing...");
+    removeExpiredCookies();
+  }, hour_interval);
 });
