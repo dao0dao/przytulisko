@@ -23,7 +23,6 @@ const server = http.createServer((req, res) => {
 server.listen(port, "0.0.0.0", () => {
   console.log(`Serwer działa na http://localhost:${port}`);
   setInterval(() => {
-    console.log("removing...");
     removeExpiredCookies();
   }, hour_interval);
 });

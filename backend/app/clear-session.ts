@@ -7,9 +7,9 @@ export const removeExpiredCookies = () => {
   const sql = sqlQuery`delete from przytulisko.session where expires < ${expireDate}`;
   pool.query(sql, (err) => {
     if (err) {
-      console.log("unable to remove cookies");
+    //   console.log("unable to remove cookies");
     } else {
-      console.log("remove expired cookies");
+    //   console.log("remove expired cookies");
     }
   });
 };
