@@ -1,9 +1,10 @@
 import { IsString } from "class-validator";
-import { MainValidator, MainValidatorBody } from "../main.validator";
+import { MainValidator, MainValidatorBody } from "../main-class-validator";
 
 export class ApiLoginPostReqBody extends MainValidator {
   constructor(body: MainValidatorBody) {
-    super(body);
+    super();
+    this.validateClassKeys(body);
   }
 
   @IsString()
