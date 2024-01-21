@@ -1,35 +1,33 @@
-import * as crypt from "bcrypt";
-import { pool } from "../../shared/db-pool";
-import { User } from "./authorization.model";
-import { sqlQuery } from "../../shared/sql-query";
+import * as bcrypt from "bcrypt";
+import { getPerson } from "./authorization.person.factory";
+import { LoginBodyPostReq } from "../../api/login/login.model";
+import { RegisterBodyPostReq } from "../../api/register/register.model";
 
-
-const checkIsUserExist = async (email: string) => {
-  const users = new Promise<User[] | false>((resolve) => {
-    const query = sqlQuery`SELECT * FROM przytulisko.admin WHERE login=${email} LIMIT 1;`;
-    pool.query(query, (err, result) => {
-      if (err) {
-        resolve(false);
-      } else {
-        resolve(result as User[]);
-      }
-    });
-  });
-  const result = await users;
-  if (!result || 0 === result.length) {
-    return false;
-  }
-  return result[0];
-};
-
-export const checkAuthAndUser = async (body: { email: string; password: string }) => {
-  const user = await checkIsUserExist(body.email);
+export const checkAuthAndUser = async (body: LoginBodyPostReq) => {
+  const user = await getPerson(body.email);
   if (!user) {
     return false;
   }
-  const is_correct_password = await crypt.compare(body.password, user.password);
+  const is_correct_password = await bcrypt.compare(body.password, user.password);
   if (!is_correct_password) {
     return false;
   }
   return user;
+};
+
+export const checkCanRegister = async (body: RegisterBodyPostReq) => {
+  const { email, password, passwordConfirm } = body;
+  if (password !== passwordConfirm) {
+    return false;
+  }
+  // eslint-disable-next-line no-useless-escape
+  const emailRegExp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  if (!email.match(emailRegExp)) {
+    return false;
+  }
+  const person = await getPerson(email);
+  if (person) {
+    return false;
+  }
+  return true;
 };

@@ -2,10 +2,10 @@ import { ParsedBody } from "../../api/api-body.model";
 import { Validator } from "./class-validator";
 
 export const validateBody = async <ClassType extends Validator<BodyType>, BodyType>(
-  class_type: new (body: ParsedBody) => ClassType,
-  body: ParsedBody
+  class_type: new (data: ParsedBody) => ClassType,
+  data: ParsedBody
 ) => {
-  const class_object = new class_type(body);
+  const class_object = new class_type(data);
   if ("function" !== typeof class_object.getIsCorrectClass) {
     return null;
   }

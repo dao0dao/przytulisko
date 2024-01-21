@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS przytulisko.users
+(
+  id varchar(36) PRIMARY KEY,
+  login varchar(200) NOT NULL UNIQUE,
+  password varchar(100) NOT NULL
+);

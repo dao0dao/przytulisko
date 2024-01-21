@@ -2,7 +2,7 @@ import { IsString } from "class-validator";
 import { Validator } from "../class-validator";
 import { ParsedBody } from "../../../api/api-body.model";
 
-export class ApiLoginPostReqBody<BodyType> extends Validator<BodyType> {
+export class ApiRegisterPostReqBody<BodyType> extends Validator<BodyType> {
   constructor(body: ParsedBody) {
     super(body);
   }
@@ -12,4 +12,7 @@ export class ApiLoginPostReqBody<BodyType> extends Validator<BodyType> {
 
   @IsString()
   password: string = "";
+
+  @IsString()
+  passwordConfirm: string = "";
 }

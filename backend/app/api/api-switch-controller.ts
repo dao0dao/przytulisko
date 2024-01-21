@@ -1,6 +1,7 @@
 import * as http from "http";
 import { notFound } from "../bundles/default-responses/default-responses";
-import { authorizationController } from "./login/login.controller";
+import { loginController } from "./login/login.controller";
+import { registerController } from "./register/register.controller";
 
 export const apiSwitchUrl = async (req: http.IncomingMessage, res: http.ServerResponse) => {
   let body = "";
@@ -14,10 +15,13 @@ export const apiSwitchUrl = async (req: http.IncomingMessage, res: http.ServerRe
     body += chunk;
   });
   req.on("end", () => {
-    const child_url = routs.slice(1).join("/");
+    // const child_url = routs.slice(1).join("/");
     switch (routs[1]) {
       case "login":
-        authorizationController(child_url, method, res, body);
+        loginController(method, res, body);
+        break;
+      case "register":
+        registerController(method, res, body);
         break;
       default:
         notFound(res);

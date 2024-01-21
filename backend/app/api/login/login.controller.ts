@@ -7,8 +7,10 @@ import { validateBody } from "../../bundles/body-validation/body-validator";
 import { ParsedBody } from "../api-body.model";
 import { LoginBodyPostReq } from "./login.model";
 
-
-export const authorizationController = async (url: string, method: string, res: http.ServerResponse, data: string) => {
+export const loginController = async (method: string, res: http.ServerResponse, data: string) => {
+  if ("POST" !== method) {
+    return badRequest(res);
+  }
   let parsedBody: ParsedBody;
   if (!data) {
     return badRequest(res);
@@ -18,16 +20,16 @@ export const authorizationController = async (url: string, method: string, res: 
   } catch (error) {
     return badRequest(res);
   }
-  const is_correct_body = await validateBody<ApiLoginPostReqBody<LoginBodyPostReq>, LoginBodyPostReq>(ApiLoginPostReqBody, parsedBody);
-  if (false === is_correct_body) {
+  const body = await validateBody<ApiLoginPostReqBody<LoginBodyPostReq>, LoginBodyPostReq>(ApiLoginPostReqBody, parsedBody);
+  if (false === body) {
     return badRequest(res);
   }
-  if (null === is_correct_body) {
+  if (null === body) {
     return internalError(res);
   }
-  const user = await checkAuthAndUser(is_correct_body);
-  if (!user) {
+  const person = await checkAuthAndUser(body);
+  if (!person) {
     return badRequest(res);
   }
-  correctLoginResponse(res, user);
+  correctLoginResponse(res, person);
 };
