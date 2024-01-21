@@ -1,11 +1,11 @@
 <form
-    [formGroup]="loginForm"
+    [formGroup]="registerForm"
     (ngSubmit)="submit()"
 >
     <div class="block">
         <input
             type="text"
-            placeholder="adres email lub nick"
+            placeholder="adres email"
             formControlName="email"
         >
         <svg>
@@ -36,16 +36,28 @@
         </p>
     </div>
     <div class="block">
+        <input
+            type="password"
+            placeholder="powtórz hasło"
+            formControlName="passwordConfirm"
+        >
+        <svg>
+            <use [attr.xlink:href]="svgLink+'icon-keys'"></use>
+        </svg>
+        <p
+            *ngIf="getField('passwordConfirm')?.dirty && !isSamePasswords"
+            class="error"
+        >
+            <span>hasła są różne</span>
+        </p>
+    </div>
+    <div class="block">
         <button
             class="btn"
             type="submit"
-            [disabled]="loginForm.invalid ? true : null"
+            [disabled]="registerForm.invalid || !isSamePasswords ? true : null"
         >
-            Zaloguj
+            Zarejestruj się
         </button>
-    </div>
-    <div class="block">
-        <p>Nie masz konta?</p>
-        <a routerLink="/register">Zarejestruj się</a>
     </div>
 </form>

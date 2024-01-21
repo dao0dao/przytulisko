@@ -9,6 +9,8 @@ import { HttpLoginService } from './http-login.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  constructor(private fb: FormBuilder, private http: HttpLoginService) {}
+
   svgLink = svgLink;
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -18,7 +20,9 @@ export class LoginComponent {
     ],
   });
 
-  constructor(private fb: FormBuilder, private http: HttpLoginService) {}
+  getField(fieldName: string) {
+    return this.loginForm.get(fieldName);
+  }
 
   submit() {
     if (this.loginForm.invalid) {

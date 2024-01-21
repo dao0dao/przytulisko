@@ -9,9 +9,10 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './authorization/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './authorization/register/register.component';
 
 @NgModule({
-  declarations: [AppComponent, NavigationComponent, LoginComponent],
+  declarations: [AppComponent, NavigationComponent, LoginComponent, RegisterComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
