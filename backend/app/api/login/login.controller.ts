@@ -3,7 +3,7 @@ import { checkAuthAndUser } from "../../bundles/authorization/authorization.user
 import { badRequest, internalError } from "../../bundles/default-responses/default-responses";
 import { correctLoginResponse } from "./login.response.factory";
 import { ApiLoginPostReqBody } from "../../bundles/body-validation/api-classes/api.login.POST.Req";
-import { validateBody } from "../../bundles/body-validation/class.validator";
+import { validateBody } from "../../bundles/body-validation/body-validator";
 import { ParsedBody } from "../api-body.model";
 import { LoginBodyPostReq } from "./login.model";
 

@@ -1,7 +1,7 @@
 import { ParsedBody } from "../../api/api-body.model";
-import { MainValidator } from "./main-class-validator";
+import { Validator } from "./class-validator";
 
-export const validateBody = async <ClassType extends MainValidator<BodyType>, BodyType>(
+export const validateBody = async <ClassType extends Validator<BodyType>, BodyType>(
   class_type: new (body: ParsedBody) => ClassType,
   body: ParsedBody
 ) => {

@@ -1,7 +1,7 @@
 import { validate } from "class-validator";
 import { ParsedBody } from "../../api/api-body.model";
 
-export class MainValidator<BodyType> {
+export class Validator<BodyType> {
   constructor(data: ParsedBody) {
     this.data = data;
   }
