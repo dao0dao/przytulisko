@@ -28,8 +28,11 @@ export const loginController = async (method: string, res: http.ServerResponse, 
     return internalError(res);
   }
   const person = await checkAuthAndUser(body);
-  if (!person) {
+  if (false === person) {
     return badRequest(res);
+  }
+  if (null === person) {
+    return internalError(res);
   }
   correctLoginResponse(res, person);
 };

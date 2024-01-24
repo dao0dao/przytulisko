@@ -6,7 +6,7 @@ import { RegisterBodyPostReq } from "../../api/register/register.model";
 export const checkAuthAndUser = async (body: LoginBodyPostReq) => {
   const user = await getPerson(body.email);
   if (!user) {
-    return false;
+    return user;
   }
   const is_correct_password = await bcrypt.compare(body.password, user.password);
   if (!is_correct_password) {

@@ -7,30 +7,58 @@ import { User, Admin, Person } from "./authorization.model";
 import * as bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
 
-export const getPerson = async (email: string) => {//to do: poprawić kod by TS zwracał PERSON[]
-  const users = new Promise<Person[] | false>((resolve) => {
-    const queryAdmin = sqlQuery`SELECT * FROM przytulisko.admin WHERE login=${email};`;
-    pool.query(queryAdmin, (err: QueryError | null, result: User[]) => {
-      //Dokładnie ten if trzeba poprawić
-      if (err || !result.length) {
-        const queryUsers = sqlQuery`SELECT * FROM przytulisko.users WHERE login=${email};`;
-        pool.query(queryUsers, (err, result) => {
-          if (err) {
-            resolve(false);
-          } else {
-            resolve(result as Admin[]);
-          }
-        });
+export const getAdmin = async (email: string) => {
+  const admin = new Promise<Admin[] | false>((resolve) => {
+    const queryAdmin = sqlQuery`SELECT * FROM przytulisko.admin WHERE login=${email} LIMIT 1;`;
+    pool.query(queryAdmin, (err: QueryError, result: Admin[]) => {
+      if (err) {
+        resolve(false);
       } else {
-        resolve(result as User[]);
+        resolve(result);
       }
     });
   });
-  const result = await users;
+  const result = await admin;
   if (!result || 1 !== result.length) {
     return false;
   }
   return result[0];
+};
+
+export const getUser = async (email: string) => {
+  const admin = new Promise<User[] | false>((resolve) => {
+    const queryUsers = sqlQuery`SELECT * FROM przytulisko.users WHERE login=${email} LIMIT 1;`;
+    pool.query(queryUsers, (err: QueryError, result: User[]) => {
+      if (err) {
+        resolve(false);
+      } else {
+        resolve(result);
+      }
+    });
+  });
+  const result = await admin;
+  if (!result || 1 !== result.length) {
+    return false;
+  }
+  return result[0];
+};
+
+export const getPerson = async (email: string): Promise<false | Person | null> => {
+  const admin = await getAdmin(email);
+  const user = await getUser(email);
+  if (!admin && !user) {
+    return false;
+  }
+  if (!admin && user) {
+    return user;
+  }
+  if (admin && !user) {
+    return admin;
+  }
+  if (admin && user) {
+    return null;
+  }
+  return null;
 };
 
 export const createUser = async (body: RegisterBodyPostReq) => {
