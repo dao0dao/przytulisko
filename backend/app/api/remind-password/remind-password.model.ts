@@ -1,1 +1,1 @@
-export type RemindPasswordBodyPostReq = { email: string; password: string };
+export type RemindPasswordBodyPostReq = { email: string };
