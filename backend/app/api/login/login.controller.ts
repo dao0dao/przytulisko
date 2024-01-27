@@ -3,17 +3,17 @@ import { checkAuthAndUser } from "../../bundles/authorization/authorization.user
 import { badRequest, internalError } from "../../bundles/default-responses/default-responses";
 import { correctLoginResponse } from "./login.response.factory";
 import { ApiLoginPostReqBody } from "../../bundles/body-validation/api-classes/api.login.POST.Req";
-import { validateBody } from "../../bundles/body-validation/body-validator";
 import { LoginBodyPostReq } from "./login.model";
-import { initialBodyValidation } from "../../bundles/body-validation/initial-body-validation";
+import { getBodyFromReq } from "../../bundles/body-validation/body-validation.fasade";
 
 export const loginController = async (method: string, res: http.ServerResponse, data: string) => {
   const accepted_method = ["POST"];
-  const parsed_body = initialBodyValidation(method, accepted_method, data);
-  if (!parsed_body) {
-    return badRequest(res);
-  }
-  const body = await validateBody<ApiLoginPostReqBody<LoginBodyPostReq>, LoginBodyPostReq>(ApiLoginPostReqBody, parsed_body);
+  const body = await getBodyFromReq<ApiLoginPostReqBody<LoginBodyPostReq>, LoginBodyPostReq>(
+    ApiLoginPostReqBody,
+    method,
+    accepted_method,
+    data
+  );
   if (false === body) {
     return badRequest(res);
   }
