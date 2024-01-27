@@ -23,6 +23,9 @@ export const apiSwitchUrl = async (req: http.IncomingMessage, res: http.ServerRe
       case "register":
         registerController(method, res, body);
         break;
+      case "remind-password":
+        registerController(method, res, body);
+        break;
       default:
         notFound(res);
         break;
