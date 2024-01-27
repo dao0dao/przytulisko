@@ -1,2 +1,7 @@
-<p>Oj coś poszło nie tak!</p>
-<button class="btn btn--one">ok</button>
+<p>{{infoModal.getMessage()}}</p>
+<button
+    class="btn btn--one"
+    (click)="infoModal.closeModal()"
+>
+    Ok
+</button>

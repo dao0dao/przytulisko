@@ -6,6 +6,7 @@ import {
   HttpInterceptor,
   HttpErrorResponse,
   HttpResponse,
+  HttpResponseBase,
 } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { InfoModalService } from './infrastructure/services/info-modal.service';
@@ -26,9 +27,20 @@ export class ApiInterceptor implements HttpInterceptor {
         if (!(error instanceof HttpErrorResponse)) {
           return error;
         }
-        this.infoModal.showModal('Oj coś poszło nie tak!');
+        this.showInfoModal(error.status);
         return throwError(() => error);
       })
     );
+  }
+
+  showInfoModal(status: number) {
+    switch (status) {
+      case 500:
+        this.infoModal.showModal('Pies nam zjadł, popsute!');
+        break;
+      case 404:
+        this.infoModal.showModal('Kot się schował, nie można znaleźć!');
+        break;
+    }
   }
 }

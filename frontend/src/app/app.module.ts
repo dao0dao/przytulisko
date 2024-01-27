@@ -11,9 +11,17 @@ import { LoginComponent } from './authorization/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './authorization/register/register.component';
 import { InfoModalComponent } from './infrastructure/info-modal/info-modal.component';
+import { RemindPasswordComponent } from './authorization/remind-password/remind-password.component';
 
 @NgModule({
-  declarations: [AppComponent, NavigationComponent, LoginComponent, RegisterComponent, InfoModalComponent],
+  declarations: [
+    AppComponent,
+    NavigationComponent,
+    LoginComponent,
+    RegisterComponent,
+    InfoModalComponent,
+    RemindPasswordComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

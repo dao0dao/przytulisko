@@ -11,6 +11,10 @@ export class InfoModalService {
     return this.isModalOpen;
   }
 
+  getMessage() {
+    return this.modalMessage;
+  }
+
   showModal(message: string) {
     this.modalMessage = message;
     this.isModalOpen = true;
