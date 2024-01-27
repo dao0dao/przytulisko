@@ -17,7 +17,7 @@ nav {
 }
 .text {
     margin: 0 auto;
-    color: $colorTwo;
+    color: $colorText;
 }
 .burger {
     overflow: hidden;
@@ -29,9 +29,10 @@ nav {
     justify-content: space-between;
     align-items: stretch;
     background-color: transparent;
+    cursor: pointer;
     .line {
         height: 3px;
-        background-color: $colorOne;
+        background-color: $colorActive;
         border-radius: 20px;
         transform-origin: left center;
         transition:
@@ -84,12 +85,12 @@ nav {
             svg {
                 max-height: 50px;
                 max-width: 50px;
-                fill: $colorOne;
-                stroke: $colorOne;
+                fill: $colorActive;
+                stroke: $colorActive;
             }
             span {
                 margin: 0 auto;
-                color: $colorOne;
+                color: $colorActive;
             }
             &:nth-child(1) {
                 z-index: 5;

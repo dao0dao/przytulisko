@@ -15,33 +15,33 @@
         transform: translateY(-50%);
         max-width: 30px;
         max-height: 30px;
-        fill: $colorThree;
+        fill: $colorBackground;
         filter: drop-shadow($botShadow);
     }
     input {
         padding: 10px 10px 10px 40px;
         border-width: 0 0 2px 0;
-        border-color: $colorThree;
+        border-color: $colorBackground;
         outline: none;
         &:focus,
         &:focus-visible {
-            border-color: $colorOne;
-            color: $colorOne;
+            border-color: $colorActive;
+            color: $colorActive;
         }
         &:focus + svg,
         &:focus-visible + svg {
-            fill: $colorOne;
+            fill: $colorActive;
             filter: drop-shadow($botShadowOne);
         }
     }
     .btn {
         margin-left: auto;
         padding: 10px;
-        border: 1px solid $colorOne;
+        border: 1px solid $colorActive;
         border-radius: 20px;
         box-shadow: $botShadowOne;
         display: block;
-        background-color: $colorOne;
+        background-color: $colorActive;
         color: white;
     }
     &:last-child {
@@ -51,7 +51,7 @@
             display: inline-block;
         }
         a {
-            color: $colorOne;
+            color: $colorActive;
         }
     }
     .error {

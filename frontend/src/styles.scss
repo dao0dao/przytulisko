@@ -4,10 +4,29 @@
     margin: 0;
     padding: 0;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    color: $colorTwo;
+    color: $colorText;
 }
-button {
+.btn {
+    padding: 10px;
+    border-radius: 20px;
+    display: block;
+    color: white;
     cursor: pointer;
+    &--one {
+        border: 1px solid $colorActive;
+        box-shadow: $botShadowOne;
+        background-color: $colorActive;
+    }
+    &--two {
+        border: 1px solid $colorText;
+        box-shadow: $botShadowTwo;
+        background-color: $colorText;
+    }
+    &--three {
+        border: 1px solid $colorBackground;
+        box-shadow: $botShadowThree;
+        background-color: $colorBackground;
+    }
     &[disabled] {
         filter: grayscale(1);
         cursor: auto;

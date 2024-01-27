@@ -1,0 +1,22 @@
+@import "src/variables";
+
+:host {
+    position: absolute;
+    z-index: 10;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    transform-origin: center;
+    padding: 10px;
+    text-align: center;
+    border-radius: 15px;
+    border: 2px solid $colorActive;
+    box-shadow: $botShadowOne;
+}
+p {
+    margin: 1rem 15px;
+}
+.btn {
+    width: 100px;
+    margin: 15px auto;
+}
