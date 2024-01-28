@@ -23,7 +23,7 @@ export const registerController = async (method: string, res: http.ServerRespons
   }
   const person = await checkCanRegister(body);
   if (!person) {
-    console.log("user or admin exist");
+    console.log("user or admin not exist");
     return badRequest(res);
   }
   const is_user = await createUser(body);

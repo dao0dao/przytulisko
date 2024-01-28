@@ -14,7 +14,6 @@ export const getFileNameFromUrl = (url?: string) => {
   }
   const lastSlashIndex = url.lastIndexOf("/");
   if (-1 === lastSlashIndex) {
-    console.log(url, -1);
     return "index.html";
   }
   if ("" === url.slice(lastSlashIndex + 1)) {

@@ -1,4 +1,4 @@
-import { QueryError } from "mysql2";
+import { QueryError, ResultSetHeader } from "mysql2";
 import { RegisterBodyPostReq } from "../../api/register/register.model";
 import { pool } from "../../shared/db-pool";
 import { sqlQuery } from "../../shared/sql-query";
@@ -6,6 +6,8 @@ import { SALT_ROUNDS } from "../../shared/varaibles";
 import { User, Admin, Person } from "./authorization.model";
 import * as bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
+import { RemindPasswordBodyPostReq } from "../../api/remind-password/remind-password.model";
+import { createExpiresSqlDate } from "../../shared/sql-date";
 
 export const getAdmin = async (email: string) => {
   const admin = new Promise<Admin[] | false>((resolve) => {
@@ -71,6 +73,22 @@ export const createUser = async (body: RegisterBodyPostReq) => {
         resolve(false);
       } else {
         resolve(true);
+      }
+    });
+  });
+  return result;
+};
+
+export const setResetTokenToUser = (body: RemindPasswordBodyPostReq) => {
+  const uuid = uuidv4();
+  const expire_date = createExpiresSqlDate();
+  const result = new Promise<false | string>((resolve) => {
+    const query = sqlQuery`UPDATE przytulisko.users SET reset_token=${uuid}, reset_token_expired_date=${expire_date} WHERE login=${body.email}`;
+    pool.query(query, (err, result: ResultSetHeader) => {
+      if (err || 0 === result.affectedRows) {
+        resolve(false);
+      } else {
+        resolve(uuid);
       }
     });
   });
