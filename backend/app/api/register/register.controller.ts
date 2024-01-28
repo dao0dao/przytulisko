@@ -3,16 +3,16 @@ import { correctRegisterResponse } from "./register.response.factory";
 import { badRequest, internalError } from "../../bundles/default-responses/default-responses";
 import { ApiRegisterPostReqBody } from "../../bundles/body-validation/api-classes/api.register.POST.Req";
 import { RegisterBodyPostReq } from "./register.model";
-import { checkCanRegister } from "../../bundles/authorization/authorization.user.factory";
+import { checkCanRegister } from "../../bundles/authorization/authorization.factory";
 import { createUser } from "../../bundles/authorization/authorization.person.factory";
 import { getBodyFromReq } from "../../bundles/body-validation/body-validation.fasade";
 
 export const registerController = async (method: string, res: http.ServerResponse, data: string) => {
-  const accepted_method = ["POST"];
+  const accepted_methods = ["POST"];
   const body = await getBodyFromReq<ApiRegisterPostReqBody<RegisterBodyPostReq>, RegisterBodyPostReq>(
     ApiRegisterPostReqBody,
     method,
-    accepted_method,
+    accepted_methods,
     data
   );
   if (false === body) {

@@ -6,11 +6,11 @@ import { RemindPasswordBodyPostReq } from "./remind-password.model";
 import { getBodyFromReq } from "../../bundles/body-validation/body-validation.fasade";
 
 export const registerController = async (method: string, res: http.ServerResponse, data: string) => {
-  const accepted_method = ["POST"];
+  const accepted_methods = ["POST"];
   const body = await getBodyFromReq<ApiRemindPasswordPostReqBody<RemindPasswordBodyPostReq>, RemindPasswordBodyPostReq>(
     ApiRemindPasswordPostReqBody,
     method,
-    accepted_method,
+    accepted_methods,
     data
   );
   if (false === body) {
