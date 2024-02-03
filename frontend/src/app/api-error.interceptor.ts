@@ -12,7 +12,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { InfoModalService } from './infrastructure/services/info-modal.service';
 
 @Injectable()
-export class ApiInterceptor implements HttpInterceptor {
+export class ApiError implements HttpInterceptor {
   constructor(private infoModal: InfoModalService) {}
 
   intercept(
@@ -27,7 +27,6 @@ export class ApiInterceptor implements HttpInterceptor {
         if (!(error instanceof HttpErrorResponse)) {
           return error;
         }
-        this.showInfoModal(error.status);
         return throwError(() => error);
       })
     );

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { svgLink } from 'src/app/utilities';
 import { HttpRemindPasswordService } from './http-remind-password.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-remind-password',
@@ -11,29 +12,31 @@ import { HttpRemindPasswordService } from './http-remind-password.service';
 export class RemindPasswordComponent {
   constructor(
     private fb: FormBuilder,
-    private httpRemindPassword: HttpRemindPasswordService
+    private httpRemindPassword: HttpRemindPasswordService,
+    private router: Router
   ) {}
 
   svgLink = svgLink;
-  registerForm = this.fb.group({
+  remindForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
   });
 
   getField(fieldName: string) {
-    return this.registerForm.get(fieldName);
+    return this.remindForm.get(fieldName);
   }
 
   submit() {
-    if (this.registerForm.invalid) {
+    if (this.remindForm.invalid) {
       return;
     }
     const data = { email: this.getField('email')?.value };
     this.httpRemindPassword.remindPassword(data).subscribe({
-      next: () => {
-        console.log('przypomnienie hasła');
+      next: (data: any) => {
+        this.router.navigate(['/remind-password/' + data.location]);
+        this.remindForm.reset();
       },
       error: () => {
-        console.log('error');
+        this.remindForm.reset();
       },
     });
   }
