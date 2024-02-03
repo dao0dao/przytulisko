@@ -5,7 +5,7 @@ import { RemindPasswordComponent } from './authorization/remind-password/remind-
 import { ResetPasswordComponent } from './authorization/reset-password/reset-password.component';
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'remind-password/12' },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'remind-password', component: RemindPasswordComponent },
