@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { svgLink } from 'src/app/utilities';
 import { HttpLoginService } from './http-login.service';
+import { InfoModalService } from 'src/app/infrastructure/services/info-modal.service';
 
 @Component({
   selector: 'app-login',
@@ -37,7 +38,7 @@ export class LoginComponent {
         console.log(res);
       },
       error: (err) => {
-        console.log(err);
+        this.loginForm.reset();
       },
     });
   }

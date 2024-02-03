@@ -41,6 +41,9 @@ export class ApiError implements HttpInterceptor {
       case 404:
         this.infoModal.showModal('Kot się schował, nie można znaleźć!');
         break;
+      case 400:
+        this.infoModal.showModal('Czego ode mnie chcesz człowieku? Błędne dane!');
+        break;
     }
   }
 }

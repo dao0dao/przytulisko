@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { HttpResetPasswordService } from './http-reset-password.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResetPasswordData } from './reset-password.model';
+import { InfoModalService } from 'src/app/infrastructure/services/info-modal.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -16,7 +17,8 @@ export class ResetPasswordComponent {
     private fb: FormBuilder,
     private httpResetPassword: HttpResetPasswordService,
     private router: Router,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private infoModal: InfoModalService
   ) {
     const s = this.resetForm.valueChanges.subscribe({
       next: () => {
@@ -59,9 +61,9 @@ export class ResetPasswordComponent {
       hash: this.activeRoute.snapshot.params['hash'],
     };
     this.httpResetPassword.remindPassword(data).subscribe({
-      next: (data: any) => {
-        this.router.navigate(['/']);
-        this.resetForm.reset();
+      next: () => {
+        this.router.navigate(['/login']);
+        this.infoModal.showModal('Zaktualizowano hasło')
       },
       error: () => {
         this.resetForm.reset();
