@@ -27,12 +27,13 @@ export class ApiError implements HttpInterceptor {
         if (!(error instanceof HttpErrorResponse)) {
           return error;
         }
+        this.showInfoModal(error.status);
         return throwError(() => error);
       })
     );
   }
 
-  showInfoModal(status: number) {
+  private showInfoModal(status: number) {
     switch (status) {
       case 500:
         this.infoModal.showModal('Pies nam zjadł, popsute!');

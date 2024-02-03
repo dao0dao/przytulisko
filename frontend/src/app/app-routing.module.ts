@@ -1,23 +1,13 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { LoginComponent } from './authorization/login/login.component';
 import { RegisterComponent } from './authorization/register/register.component';
 import { RemindPasswordComponent } from './authorization/remind-password/remind-password.component';
+import { ResetPasswordComponent } from './authorization/reset-password/reset-password.component';
 
-const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'remind-password' },
+export const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'remind-password/12' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'remind-password', component: RemindPasswordComponent },
-  { path: 'remind-password/:id', component: LoginComponent },
+  { path: 'remind-password/:hash', component: ResetPasswordComponent },
 ];
-
-@NgModule({
-  imports: [
-    RouterModule.forRoot(routes, {
-      useHash: true,
-    }),
-  ],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}
