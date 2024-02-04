@@ -29,7 +29,8 @@ export const getAdminByEmail = async (email: string) => {
 };
 export const getAdminByResetToken = async (reset_token: string, date_now: string) => {
   const admin = new Promise<Admin[] | false>((resolve) => {
-    const queryAdmin = sqlQuery`SELECT * FROM przytulisko.admin WHERE reset_token=${reset_token} IS NOT NULL AND reset_token_expired_date > ${date_now} LIMIT 1;`;
+    console.log(reset_token);
+    const queryAdmin = sqlQuery`SELECT * FROM przytulisko.admin WHERE reset_token=${reset_token} AND reset_token_expired_date > ${date_now} LIMIT 1;`;
     pool.query(queryAdmin, (err: QueryError, result: Admin[]) => {
       if (err) {
         resolve(false);
@@ -64,7 +65,7 @@ export const getUserByEmail = async (email: string) => {
 };
 export const getUserByResetToken = async (reset_token: string, date_now: string) => {
   const admin = new Promise<User[] | false>((resolve) => {
-    const queryUsers = sqlQuery`SELECT * FROM przytulisko.users WHERE reset_token=${reset_token}IS NOT NULL AND reset_token_expired_date > ${date_now} LIMIT 1;`;
+    const queryUsers = sqlQuery`SELECT * FROM przytulisko.users WHERE reset_token=${reset_token} AND reset_token_expired_date > ${date_now} LIMIT 1;`;
     pool.query(queryUsers, (err: QueryError, result: User[]) => {
       if (err) {
         resolve(false);
@@ -82,7 +83,7 @@ export const getUserByResetToken = async (reset_token: string, date_now: string)
 
 export const changeAdminPasswordById = async (id: string, hashed_password: string) => {
   const result = new Promise<true | null>((resolve) => {
-    const query = `UPDATE przytulisko.admin SET password=${hashed_password} WHERE id=${id}`;
+    const query = sqlQuery`UPDATE przytulisko.admin SET password=${hashed_password}, reset_token=NULL, reset_token_expired_date=NULL WHERE id=${id};`;
     pool.query(query, (err, result: ResultSetHeader) => {
       if (err || 1 !== result.affectedRows) {
         resolve(null);
@@ -95,7 +96,7 @@ export const changeAdminPasswordById = async (id: string, hashed_password: strin
 };
 export const changeUserPasswordById = async (id: string, hashed_password: string) => {
   const result = new Promise<true | null>((resolve) => {
-    const query = `UPDATE przytulisko.users SET password=${hashed_password} WHERE id=${id}`;
+    const query = sqlQuery`UPDATE przytulisko.users SET password=${hashed_password}, reset_token=NULL, reset_token_expired_date=NULL WHERE id=${id};`;
     pool.query(query, (err, result: ResultSetHeader) => {
       if (err || 1 !== result.affectedRows) {
         resolve(null);
@@ -147,7 +148,7 @@ export const createUser = async (body: RegisterBodyPostReq) => {
   const password = await bcrypt.hash(body.password, SALT_ROUNDS);
   const uuid = uuidv4();
   const result = new Promise<boolean>((resolve) => {
-    const query = sqlQuery`INSERT INTO przytulisko.users (id, login, password) values (${uuid}, ${body.email}, ${password})`;
+    const query = sqlQuery`INSERT INTO przytulisko.users (id, login, password) values (${uuid}, ${body.email}, ${password});`;
     pool.query(query, (err) => {
       if (err) {
         resolve(false);
@@ -159,11 +160,20 @@ export const createUser = async (body: RegisterBodyPostReq) => {
   return result;
 };
 
-export const setResetTokenToUser = (body: RemindPasswordBodyPostReq) => {
+export const setPersonTokenToUser = async (body: RemindPasswordBodyPostReq) => {
+  const person = await getPerson(body.email);
+  if (!person) {
+    return null;
+  }
   const uuid = uuidv4();
   const expire_date = createExpiresSqlDate();
   const result = new Promise<false | string>((resolve) => {
-    const query = sqlQuery`UPDATE przytulisko.users SET reset_token=${uuid}, reset_token_expired_date=${expire_date} WHERE login=${body.email}`;
+    let query = "";
+    if ("super_admin" in person) {
+      query = sqlQuery`UPDATE przytulisko.admin SET reset_token=${uuid}, reset_token_expired_date=${expire_date} WHERE id=${person.id};`;
+    } else {
+      query = sqlQuery`UPDATE przytulisko.users SET reset_token=${uuid}, reset_token_expired_date=${expire_date} WHERE id=${person.id};`;
+    }
     pool.query(query, (err, result: ResultSetHeader) => {
       if (err || 0 === result.affectedRows) {
         resolve(false);
@@ -181,6 +191,7 @@ export const resetPersonPassword = async (body: ResetPasswordBodyPostReq) => {
     return null;
   }
   const person = await getPersonByResetToken(hash);
+  console.log(person);
   if (!person) {
     return person;
   }
