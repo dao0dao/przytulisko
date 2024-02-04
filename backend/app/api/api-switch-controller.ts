@@ -3,6 +3,7 @@ import { notFound } from "../bundles/default-responses/default-responses";
 import { loginController } from "./login/login.controller";
 import { registerController } from "./register/register.controller";
 import { remindPasswordController } from "./remind-password/remind-password.controller";
+import { resetPasswordController } from "./reset-passowrd/reset-password.controller";
 
 export const apiSwitchUrl = async (req: http.IncomingMessage, res: http.ServerResponse) => {
   let body = "";
@@ -25,7 +26,10 @@ export const apiSwitchUrl = async (req: http.IncomingMessage, res: http.ServerRe
         registerController(method, res, body);
         break;
       case "remind-password":
-        remindPasswordController(method, req, res, body);
+        remindPasswordController(method, res, body);
+        break;
+      case "reset-password":
+        resetPasswordController(method, res, body);
         break;
       default:
         notFound(res);

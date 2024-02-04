@@ -1,16 +1,12 @@
-import { IsNotEmpty, IsString, MaxLength, MinLength } from "class-validator";
+import { IsNotEmpty, IsString, IsUUID, MaxLength, MinLength } from "class-validator";
 import { Validator } from "../class-validator";
 import { ParsedBody } from "../../../api/api-body.model";
 
-export class ApiRegisterPostReqBody<BodyType> extends Validator<BodyType> {
+export class ApiResetPasswordPostReqBody<BodyType> extends Validator<BodyType> {
   constructor(body: ParsedBody) {
     super(body);
   }
 
-  @IsNotEmpty()
-  @IsString()
-  email: string = "";
-  
   @IsNotEmpty()
   @IsString()
   @MinLength(5)
@@ -21,5 +17,10 @@ export class ApiRegisterPostReqBody<BodyType> extends Validator<BodyType> {
   @IsString()
   @MinLength(5)
   @MaxLength(10)
-  passwordConfirm: string = "";
+  confirmPassword: string = "";
+
+  @IsNotEmpty()
+  @IsString()
+  @IsUUID(4)
+  hash: string = "";
 }

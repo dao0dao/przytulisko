@@ -7,7 +7,7 @@ import { getBodyFromReq } from "../../bundles/body-validation/body-validation.fa
 import { setResetTokenToUser } from "../../bundles/authorization/authorization.person.factory";
 import { correctRemindPasswordResponse } from "./remind-password.response.factory";
 
-export const remindPasswordController = async (method: string, req: http.IncomingMessage, res: http.ServerResponse, data: string) => {
+export const remindPasswordController = async (method: string, res: http.ServerResponse, data: string) => {
   const accepted_methods = ["POST"];
   const body = await getBodyFromReq<ApiRemindPasswordPostReqBody<RemindPasswordBodyPostReq>, RemindPasswordBodyPostReq>(
     ApiRemindPasswordPostReqBody,
@@ -26,5 +26,5 @@ export const remindPasswordController = async (method: string, req: http.Incomin
   if (!result) {
     return badRequest(res);
   }
-  correctRemindPasswordResponse(result, req, res);
+  correctRemindPasswordResponse(result, res);
 };

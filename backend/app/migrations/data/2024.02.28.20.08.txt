@@ -1,3 +1,0 @@
-ALTER TABLE przytulisko.users
-ADD COLUMN reset_token VARCHAR(36),
-ADD COLUMN reset_token_expired_date DATETIME;
