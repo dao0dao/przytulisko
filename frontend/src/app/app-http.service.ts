@@ -11,4 +11,8 @@ export class AppHttpService {
   getData() {
     return this.http.get(API_LINK(), { responseType: 'text' });
   }
+
+  isLogin(){
+    return this.http.get(API_LINK() + '/session',)
+  }
 }

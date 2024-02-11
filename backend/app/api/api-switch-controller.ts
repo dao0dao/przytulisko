@@ -4,6 +4,7 @@ import { loginController } from "./login/login.controller";
 import { registerController } from "./register/register.controller";
 import { remindPasswordController } from "./remind-password/remind-password.controller";
 import { resetPasswordController } from "./reset-passowrd/reset-password.controller";
+import { sessionController } from "./session/session.controller";
 
 export const apiSwitchUrl = async (req: http.IncomingMessage, res: http.ServerResponse) => {
   let body = "";
@@ -30,6 +31,9 @@ export const apiSwitchUrl = async (req: http.IncomingMessage, res: http.ServerRe
         break;
       case "reset-password":
         resetPasswordController(method, res, body);
+        break;
+      case "session":
+        sessionController(method, req, res);
         break;
       default:
         notFound(res);

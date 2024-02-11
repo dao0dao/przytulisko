@@ -6,8 +6,6 @@ import { sqlQuery } from "../../shared/sql-query";
 import { pool } from "../../shared/db-pool";
 import { createExpiresSqlDate } from "../../shared/sql-date";
 
-
-
 export const createNewCookie = async (res: http.ServerResponse, user: User) => {
   const secret_one = "Chrząszcz";
   const secret_two = "Trzcinie";
