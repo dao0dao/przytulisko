@@ -19,6 +19,17 @@ nav {
     margin: 0 auto;
     color: $colorText;
 }
+.btn {
+    margin: 0 10px 0 5px;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    svg {
+        width: 30px;
+        height: 30px;
+        fill: $colorActive;
+    }
+}
 .burger {
     overflow: hidden;
     width: 30px;
@@ -74,6 +85,13 @@ nav {
             padding: 10px 0;
             box-shadow: $botShadow;
             background-color: white;
+            &:last-child {
+                padding: 20px 0;
+                svg {
+                    max-height: 30px;
+                    max-width: 30px;
+                }
+            }
             a {
                 max-width: 300px;
                 margin: 0 auto;

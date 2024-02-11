@@ -5,20 +5,20 @@ import { RegisterBodyPostReq } from "../../api/register/register.model";
 import { QueryError, ResultSetHeader } from "mysql2";
 import { pool } from "../../shared/db-pool";
 import { sqlQuery } from "../../shared/sql-query";
-import { User } from "./person.model";
+import { Person, User } from "./person.model";
 import { v4 as uuidv4 } from "uuid";
 import { SALT_ROUNDS } from "../../shared/varaibles";
 
-export const checkAuthAndUser = async (body: LoginBodyPostReq) => {
-  const user = await getPersonByEmail(body.email);
-  if (!user) {
-    return user;
+export const checkAuthAndUser = async (body: LoginBodyPostReq): Promise<false | Person | null> => {
+  const person = await getPersonByEmail(body.email);
+  if (!person) {
+    return person;
   }
-  const is_correct_password = await bcrypt.compare(body.password, user.password);
+  const is_correct_password = await bcrypt.compare(body.password, person.password);
   if (!is_correct_password) {
     return false;
   }
-  return user;
+  return person;
 };
 
 export const checkCanRegisterUser = async (body: RegisterBodyPostReq) => {

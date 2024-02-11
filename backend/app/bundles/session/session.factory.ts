@@ -5,6 +5,7 @@ import { createSqlDate } from "../../shared/sql-date";
 import { sqlQuery } from "../../shared/sql-query";
 import { IdFromSession } from "./session.model";
 import { QueryError } from "mysql2";
+import { getPersonById } from "../person/person.factory";
 
 export const getSessionCookie = (req: http.IncomingMessage) => {
   if (!req.headers.cookie) {
@@ -21,11 +22,10 @@ export const getSessionCookie = (req: http.IncomingMessage) => {
     const value = c.split("=")[1];
     cookies[key] = value;
   });
-
   if (!cookies[COOKIE_NAME!]) {
     return false;
   }
-  return cookies.COOKIE_NAME;
+  return cookies[COOKIE_NAME!];
 };
 
 export const getPersonIdFromSession = (session_cookie: string) => {
@@ -44,10 +44,13 @@ export const getPersonIdFromSession = (session_cookie: string) => {
 };
 
 export const isPersonSessionExist = async (session_cookie: string) => {
-  const is_session_exist = await getPersonIdFromSession(session_cookie);
-  if (!is_session_exist) {
+  const person_id = await getPersonIdFromSession(session_cookie);
+  if (!person_id) {
     return false;
-  } else {
-    return true;
   }
+  const person = await getPersonById(person_id.user_id);
+  if (!person) {
+    return person;
+  }
+  return person.login;
 };

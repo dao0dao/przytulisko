@@ -8,10 +8,8 @@ import { v4 as uuidv4 } from "uuid";
 import { RemindPasswordBodyPostReq } from "../../api/remind-password/remind-password.model";
 import { createExpiresSqlDate, createSqlDate } from "../../shared/sql-date";
 import { ResetPasswordBodyPostReq } from "../../api/reset-passowrd/reset-password.model";
-import { changeAdminPasswordById, getAdminByEmail, getAdminByResetToken } from "./admin.factory";
-import { changeUserPasswordById, getUserByEmail, getUserByResetToken } from "./user.factory";
-
-
+import { changeAdminPasswordById, getAdminByEmail, getAdminById, getAdminByResetToken } from "./admin.factory";
+import { changeUserPasswordById, getUserByEmail, getUserById, getUserByResetToken } from "./user.factory";
 
 export const getPersonByEmail = async (email: string): Promise<false | Person | null> => {
   const admin = await getAdminByEmail(email);
@@ -31,8 +29,8 @@ export const getPersonByEmail = async (email: string): Promise<false | Person | 
   return null;
 };
 export const getPersonById = async (id: string): Promise<false | Person | null> => {
-  const admin = await getAdminByEmail(id);
-  const user = await getUserByEmail(id);
+  const admin = await getAdminById(id);
+  const user = await getUserById(id);
   if (!admin && !user) {
     return false;
   }
@@ -66,8 +64,6 @@ export const getPersonByResetToken = async (reset_token: string): Promise<false 
   }
   return null;
 };
-
-
 
 export const setPersonTokenToUser = async (body: RemindPasswordBodyPostReq) => {
   const person = await getPersonByEmail(body.email);

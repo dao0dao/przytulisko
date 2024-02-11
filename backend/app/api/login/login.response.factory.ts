@@ -1,12 +1,12 @@
 import * as http from "http";
-import { User } from "../../bundles/person/person.model";
+import { Person } from "../../bundles/person/person.model";
 import { createNewCookie } from "../../bundles/cookie/cookie.factory";
 import { internalError } from "../../bundles/default-responses/default-responses";
 
-export const correctLoginResponse = async (res: http.ServerResponse, user: User) => {
-  const data = { loginStatus: true };
+export const correctLoginResponse = async (res: http.ServerResponse, person: Person) => {
+  const data = { isLogin: true, login: person.login };
   res.statusCode = 200;
-  const cookies = await createNewCookie(res, user);
+  const cookies = await createNewCookie(res, person);
   if (!cookies) {
     return internalError(res);
   }

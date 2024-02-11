@@ -3,6 +3,7 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { svgLink } from 'src/app/utilities';
 import { HttpRegisterService } from './http-register.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnDestroy {
-  constructor(private fb: FormBuilder, private http: HttpRegisterService) {
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpRegisterService,
+    private router: Router
+  ) {
     const s = this.registerForm.valueChanges.subscribe({
       next: () => {
         if (
@@ -60,7 +65,7 @@ export class RegisterComponent implements OnDestroy {
     };
     this.http.register(data).subscribe({
       next: (res) => {
-        console.log(res);
+        this.router.navigate(['/']);
       },
       error: (err) => {
         console.log(err);

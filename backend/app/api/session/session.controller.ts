@@ -1,5 +1,5 @@
 import * as http from "http";
-import { badRequest } from "../../bundles/default-responses/default-responses";
+import { badRequest, internalError } from "../../bundles/default-responses/default-responses";
 import { checkIsPersonLogIn } from "../../bundles/session/session.fasade";
 
 export const sessionController = async (method: string, req: http.IncomingMessage, res: http.ServerResponse) => {
@@ -8,12 +8,14 @@ export const sessionController = async (method: string, req: http.IncomingMessag
     badRequest(res);
     return;
   }
-  const is_person_login = await checkIsPersonLogIn(req);
-  if (is_person_login) {
-    const responseData = { isLogin: true };
+  const person_login = await checkIsPersonLogIn(req);
+  if (person_login) {
+    const responseData = { isLogin: true, login: person_login };
     res.end(JSON.stringify(responseData));
+  } else if (null === person_login) {
+    internalError(res);
   } else {
-    const responseData = { isLogin: true };
+    const responseData = { isLogin: false };
     res.end(JSON.stringify(responseData));
   }
 };

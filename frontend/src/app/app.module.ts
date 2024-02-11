@@ -14,6 +14,7 @@ import { InfoModalComponent } from './infrastructure/info-modal/info-modal.compo
 import { RemindPasswordComponent } from './authorization/remind-password/remind-password.component';
 import { ResetPasswordComponent } from './authorization/reset-password/reset-password.component';
 import { RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { RouterModule } from '@angular/router';
     InfoModalComponent,
     RemindPasswordComponent,
     ResetPasswordComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

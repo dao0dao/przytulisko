@@ -7,6 +7,15 @@
         >
         <p class="text">Przytulisko dla zwierząt</p>
         <button
+            *ngIf="authState.hasSingIn$ |async"
+            class="btn"
+            (click)="toggleProfile()"
+        >
+            <svg>
+                <use [attr.xlink:href]="svgLink+'icon-login'"></use>
+            </svg>
+        </button>
+        <button
             class="burger"
             (click)="toggleNavigation()"
         >
@@ -74,6 +83,7 @@
                 </a>
             </div>
             <div
+                *ngIf="!(authState.hasSingIn$ | async)"
                 @elementFour
                 class="element"
             >
@@ -85,6 +95,41 @@
                         <use [attr.xlink:href]="svgLink+'icon-login'"></use>
                     </svg>
                     <span>Zaloguj się</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div
+        *ngIf="isProfileOpen"
+        @container
+        class="navListContainer"
+    >
+        <div class="navList">
+            <div
+                @elementOne
+                class="element"
+            >
+                <a
+                    href="#"
+                    (click)="closeProfile()"
+                >
+                    <span>
+                        konto: {{authState.authAccount$ | async}}
+                    </span>
+                </a>
+            </div>
+            <div
+                @elementTwo
+                class="element"
+            >
+                <a
+                    href="#"
+                    (click)="closeProfile()"
+                >
+                    <svg>
+                        <use [attr.xlink:href]="svgLink+'icon-logout'"></use>
+                    </svg>
+                    <span>Wyloguj się</span>
                 </a>
             </div>
         </div>
