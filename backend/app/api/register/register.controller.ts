@@ -3,8 +3,7 @@ import { correctRegisterResponse } from "./register.response.factory";
 import { badRequest, internalError } from "../../bundles/default-responses/default-responses";
 import { ApiRegisterPostReqBody } from "../../bundles/body-validation/api-classes/api.register.POST.Req";
 import { RegisterBodyPostReq } from "./register.model";
-import { checkCanRegister } from "../../bundles/authorization/authorization.factory";
-import { createUser } from "../../bundles/authorization/authorization.person.factory";
+import { checkCanRegisterUser, createUser } from "../../bundles/person/user.factory";
 import { getBodyFromReq } from "../../bundles/body-validation/body-validation.fasade";
 
 export const registerController = async (method: string, res: http.ServerResponse, data: string) => {
@@ -21,7 +20,7 @@ export const registerController = async (method: string, res: http.ServerRespons
   if (null === body) {
     return internalError(res);
   }
-  const person = await checkCanRegister(body);
+  const person = await checkCanRegisterUser(body);
   if (!person) {
     console.log("user or admin not exist");
     return badRequest(res);

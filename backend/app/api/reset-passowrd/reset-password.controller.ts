@@ -4,7 +4,7 @@ import { badRequest, internalError } from "../../bundles/default-responses/defau
 import { getBodyFromReq } from "../../bundles/body-validation/body-validation.fasade";
 import { ResetPasswordBodyPostReq } from "./reset-password.model";
 import { ApiResetPasswordPostReqBody } from "../../bundles/body-validation/api-classes/api.reset-password.POST.req";
-import { resetPersonPassword } from "../../bundles/authorization/authorization.person.factory";
+import { resetPersonPassword } from "../../bundles/person/person.factory";
 
 export const resetPasswordController = async (method: string, res: http.ServerResponse, data: string) => {
   const accepted_methods = ["POST"];

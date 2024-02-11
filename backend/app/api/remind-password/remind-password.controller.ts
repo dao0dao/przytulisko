@@ -4,7 +4,7 @@ import { badRequest, internalError } from "../../bundles/default-responses/defau
 import { ApiRemindPasswordPostReqBody } from "../../bundles/body-validation/api-classes/api.remind-password.POST.req";
 import { RemindPasswordBodyPostReq } from "./remind-password.model";
 import { getBodyFromReq } from "../../bundles/body-validation/body-validation.fasade";
-import { setPersonTokenToUser } from "../../bundles/authorization/authorization.person.factory";
+import { setPersonTokenToUser } from "../../bundles/person/person.factory";
 import { correctRemindPasswordResponse } from "./remind-password.response.factory";
 
 export const remindPasswordController = async (method: string, res: http.ServerResponse, data: string) => {

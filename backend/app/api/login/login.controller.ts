@@ -1,5 +1,5 @@
 import * as http from "http";
-import { checkAuthAndUser } from "../../bundles/authorization/authorization.factory";
+import { checkAuthAndUser } from "../../bundles/person/user.factory";
 import { badRequest, internalError } from "../../bundles/default-responses/default-responses";
 import { correctLoginResponse } from "./login.response.factory";
 import { ApiLoginPostReqBody } from "../../bundles/body-validation/api-classes/api.login.POST.Req";

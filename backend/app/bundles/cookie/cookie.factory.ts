@@ -1,6 +1,6 @@
 import * as http from "http";
 import { COOKIE_NAME, SALT_ROUNDS } from "../../shared/varaibles";
-import { User } from "../authorization/authorization.model";
+import { User } from "../person/person.model";
 import * as bcrypt from "bcrypt";
 import { sqlQuery } from "../../shared/sql-query";
 import { pool } from "../../shared/db-pool";

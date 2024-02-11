@@ -1,5 +1,5 @@
 import * as http from "http";
-import { User } from "../../bundles/authorization/authorization.model";
+import { User } from "../../bundles/person/person.model";
 import { createNewCookie } from "../../bundles/cookie/cookie.factory";
 import { internalError } from "../../bundles/default-responses/default-responses";
 
