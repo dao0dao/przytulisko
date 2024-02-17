@@ -30,3 +30,9 @@ export const createNewCookie = async (res: http.ServerResponse, user: User) => {
   res.setHeader("Set-Cookie", cookie);
   return true;
 };
+
+export const removeCookie = (res: http.ServerResponse) => {
+  const cookie = `${COOKIE_NAME}=''; Max-Age=0 Secure; HttpOnly; SameSite=Strict; path=/`;
+  res.setHeader("Set-Cookie", cookie);
+  return true;
+};

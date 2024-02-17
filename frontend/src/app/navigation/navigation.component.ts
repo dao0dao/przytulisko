@@ -67,8 +67,6 @@ export class NavigationComponent implements OnDestroy {
       },
       error: () => {
         this.closeProfile();
-        this.authState.signOut();
-        this.router.navigate(['/']);
       },
     });
   }

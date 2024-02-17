@@ -5,6 +5,7 @@ import { registerController } from "./register/register.controller";
 import { remindPasswordController } from "./remind-password/remind-password.controller";
 import { resetPasswordController } from "./reset-passowrd/reset-password.controller";
 import { sessionController } from "./session/session.controller";
+import { logoutController } from "./logout/logout.controller";
 
 export const apiSwitchUrl = async (req: http.IncomingMessage, res: http.ServerResponse) => {
   let body = "";
@@ -22,6 +23,9 @@ export const apiSwitchUrl = async (req: http.IncomingMessage, res: http.ServerRe
     switch (routs[1]) {
       case "login":
         loginController(method, res, body);
+        break;
+      case "logout":
+        logoutController(method, req, res);
         break;
       case "register":
         registerController(method, res, body);

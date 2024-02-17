@@ -54,3 +54,17 @@ export const isPersonSessionExist = async (session_cookie: string) => {
   }
   return person.login;
 };
+
+export const removeSessionByCookieKey = (session_cookie: string) => {
+  const query = sqlQuery`DELETE FROM przytulisko.session WHERE cookie_key=${session_cookie};`;
+  const isRemovedSession = new Promise<boolean>((resolve) => {
+    pool.query(query, (err) => {
+      if (err) {
+        resolve(false);
+        return;
+      }
+      resolve(true);
+    });
+  });
+  return isRemovedSession;
+};
