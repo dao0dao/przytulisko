@@ -3,6 +3,7 @@ import { InfoModalService } from './infrastructure/services/info-modal.service';
 import { appAnimations } from './app-animations';
 import { AppHttpService } from './app-http.service';
 import { AuthStateService } from './authorization/auth-state.service';
+import { NavigationMenuService } from './navigation/navigation-menu.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,8 @@ export class AppComponent {
   constructor(
     public infoModal: InfoModalService,
     private http: AppHttpService,
-    private authState: AuthStateService
+    private authState: AuthStateService,
+    public navigationMenu: NavigationMenuService
   ) {
     this.http.isLogin().subscribe({
       next: (state) => {

@@ -14,4 +14,8 @@ export class HttpLoginService {
   logIn(data: LoginData) {
     return this.http.post<AuthState>(apiLink() + 'login', data);
   }
+
+  logOut(){
+    return this.http.get(apiLink()+ 'logout')
+  }
 }

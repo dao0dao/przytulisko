@@ -125,3 +125,14 @@ nav {
         }
     }
 }
+.navListContaienrUser {
+    min-height: 125px;
+    .navList {
+        .element {
+            svg {
+                max-height: 30px;
+                max-width: 30px;
+            }
+        }
+    }
+}

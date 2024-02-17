@@ -102,7 +102,7 @@
     <div
         *ngIf="isProfileOpen"
         @container
-        class="navListContainer"
+        class="navListContainer navListContaienrUser"
     >
         <div class="navList">
             <div
@@ -113,6 +113,9 @@
                     href="#"
                     (click)="closeProfile()"
                 >
+                <svg>
+                    <use [attr.xlink:href]="svgLink+'icon-edit-profile'"></use>
+                </svg>
                     <span>
                         konto: {{authState.authAccount$ | async}}
                     </span>
@@ -124,7 +127,7 @@
             >
                 <a
                     href="#"
-                    (click)="closeProfile()"
+                    (click)="logOut()"
                 >
                     <svg>
                         <use [attr.xlink:href]="svgLink+'icon-logout'"></use>

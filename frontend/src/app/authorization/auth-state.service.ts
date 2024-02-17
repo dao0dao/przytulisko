@@ -36,6 +36,5 @@ export class AuthStateService {
   setState(state: AuthState) {
     this.authState = state;
     this.hasSingInEmiter.next(this.authState);
-    console.log(this.authState)
   }
 }

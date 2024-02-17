@@ -1,5 +1,8 @@
 <app-navigation></app-navigation>
-<div class="outlet">
+<div
+    class="outlet"
+    (click)="navigationMenu.closeMenu()"
+>
     <router-outlet></router-outlet>
 </div>
 <app-info-modal
