@@ -1,1 +1,11 @@
-<p>home works!</p>
+<h3 *ngIf="!pets.length">
+    Wszystkie zwierzęta zostały zaadaptowane!
+</h3>
+<div class="cards">
+    <div
+        *ngFor="let pet of pets"
+        class="card"
+    >
+        zwierzak
+    </div>
+</div>
