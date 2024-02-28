@@ -1,5 +1,32 @@
 @import "src/variables";
-h3{
+h3 {
     margin-top: 4rem;
     text-align: center;
+}
+.card {
+    margin: 1rem auto;
+    padding: 10px;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 20px;
+    box-shadow: $botShadowThree;
+    display: flex;
+    flex-wrap: wrap;
+    .image {
+        flex-shrink: 0;
+        width: 90%;
+        max-width: 200px;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 20px;
+        }
+    }
+    .data {
+        flex-grow: 1;
+    }
 }
