@@ -74,7 +74,7 @@ nav {
     left: 0%;
     width: 100%;
     z-index: 10;
-    min-height: 285px;
+    min-height: 215px;
     .navList {
         display: flex;
         flex-direction: column;
@@ -93,8 +93,8 @@ nav {
                 }
             }
             a {
-                max-width: 300px;
-                margin: 0 auto;
+                width: 100%;
+                padding: 0 calc((100% - 300px) / 2);
                 display: flex;
                 justify-content: flex-start;
                 align-items: center;
@@ -132,6 +132,35 @@ nav {
             svg {
                 max-height: 30px;
                 max-width: 30px;
+            }
+        }
+    }
+}
+@media screen and (min-width: 992px) {
+    .navListContainer {
+        left: unset;
+        right: 0;
+        width: 400px;
+        .navList {
+            .element {
+                &:last-child {
+                    border-radius: 0 0 0 20px;
+                }
+            }
+        }
+    }
+}
+@media screen and (min-width: 1920px) {
+    nav {
+        padding: 5px calc((100% - 1910px) / 2);
+    }
+    .navListContainer {
+        right: calc((100% - 1910px) / 2);
+        .navList {
+            .element {
+                &:last-child {
+                    border-radius: 0 0 20px 20px;
+                }
             }
         }
     }

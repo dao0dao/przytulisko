@@ -6,17 +6,17 @@
         *ngFor="let pet of pets"
         class="card"
     >
-        <div class="image">
-            <img
-                [src]="pet.imageUrl"
-                alt
-            >
+        <div
+            class="image"
+            [ngStyle]="{'background-image': 'url('+pet.imageUrl+')'}"
+        >
         </div>
         <div class="data">
-            <p>{{pet.name}}</p>
-            <p>{{pet.age}}</p>
-            <p>{{pet.breed}}</p>
-            <p>{{pet.gender}}</p>
+            <p>imię: {{pet.name}}</p>
+            <p>wiek: {{pet.age}}</p>
+            <p>rasa: {{pet.breed}}</p>
+            <p>płeć: {{pet.gender}}</p>
         </div>
+        <p class="description">{{pet.description}}</p>
     </div>
 </div>
