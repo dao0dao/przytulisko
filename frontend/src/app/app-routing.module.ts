@@ -6,6 +6,8 @@ import { ResetPasswordComponent } from './authorization/reset-password/reset-pas
 import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
+  { path: 'cats', component: HomeComponent },
+  { path: 'dogs', component: HomeComponent },
   { path: '', pathMatch: 'full', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

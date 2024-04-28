@@ -7,6 +7,10 @@ import { Pet } from '../infrastructure/models/pet.model';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
+
+  constructor(){
+    
+  }
   
   pets: Pet[] = [
     {

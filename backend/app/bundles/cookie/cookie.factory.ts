@@ -1,12 +1,12 @@
 import * as http from "http";
 import { COOKIE_NAME, SALT_ROUNDS } from "../../shared/varaibles";
-import { User } from "../person/person.model";
+import { Person } from "../person/person.model";
 import * as bcrypt from "bcrypt";
 import { sqlQuery } from "../../shared/sql-query";
 import { pool } from "../../shared/db-pool";
 import { createExpiresSqlDate } from "../../shared/sql-date";
 
-export const createNewCookie = async (res: http.ServerResponse, user: User) => {
+export const createNewCookie = async (res: http.ServerResponse, user: Person) => {
   const secret_one = "Chrząszcz";
   const secret_two = "Trzcinie";
   const data = secret_one + user.login + secret_two;

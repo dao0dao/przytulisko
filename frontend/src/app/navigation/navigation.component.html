@@ -58,7 +58,7 @@
                 class="element"
             >
                 <a
-                    href="#"
+                    routerLink="cats"
                     (click)="closeNavigation()"
                 >
                     <svg>
@@ -73,7 +73,7 @@
             >
 
                 <a
-                    href="#"
+                    routerLink="dogs"
                     (click)="closeNavigation()"
                 >
                     <svg>
@@ -113,9 +113,9 @@
                     href="#"
                     (click)="closeProfile()"
                 >
-                <svg>
-                    <use [attr.xlink:href]="svgLink+'icon-edit-profile'"></use>
-                </svg>
+                    <svg>
+                        <use [attr.xlink:href]="svgLink+'icon-edit-profile'"></use>
+                    </svg>
                     <span>
                         konto: {{authState.authAccount$ | async}}
                     </span>

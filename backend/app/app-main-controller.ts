@@ -6,6 +6,7 @@ import { fileController } from "./bundles/file-fasade/file-controller";
 
 export const appMainController = (req: http.IncomingMessage, res: http.ServerResponse) => {
   const { url } = req;
+  console.log(url)
   if (url?.includes("/api")) {
     apiSwitchUrl(req, res);
   } else if ("GET" === req.method && ("/" === url || isFile(url))) {

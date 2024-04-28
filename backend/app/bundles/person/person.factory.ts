@@ -18,9 +18,11 @@ export const getPersonByEmail = async (email: string): Promise<false | Person | 
     return false;
   }
   if (!admin && user) {
+    user.type = "user";
     return user;
   }
   if (admin && !user) {
+    admin.type = "admin";
     return admin;
   }
   if (admin && user) {
