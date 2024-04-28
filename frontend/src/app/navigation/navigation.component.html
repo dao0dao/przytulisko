@@ -126,6 +126,22 @@
                 class="element"
             >
                 <a
+                    routerLink="pets"
+                    (click)="closeProfile()"
+                >
+                    <!-- <svg>
+                        <use [attr.xlink:href]="svgLink+'icon-edit-profile'"></use>
+                    </svg> -->
+                    <span>
+                        lista podopiecznych
+                    </span>
+                </a>
+            </div>
+            <div
+                @elementThree
+                class="element"
+            >
+                <a
                     href="#"
                     (click)="logOut()"
                 >

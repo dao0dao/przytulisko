@@ -15,6 +15,7 @@ import { RemindPasswordComponent } from './authorization/remind-password/remind-
 import { ResetPasswordComponent } from './authorization/reset-password/reset-password.component';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { PetsComponent } from './authorization/pets/pets.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { HomeComponent } from './home/home.component';
     RemindPasswordComponent,
     ResetPasswordComponent,
     HomeComponent,
+    PetsComponent,
   ],
   imports: [
     BrowserModule,
