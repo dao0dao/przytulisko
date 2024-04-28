@@ -18,8 +18,9 @@
             <p>płeć: {{pet.gender}}</p>
         </div>
         <p class="description">{{pet.description}}</p>
-        <div *ngIf="authState.getIsAdmin()">
-            <button></button>
+        <div class="actions" *ngIf="authState.getIsAdmin()">
+            <button class="btn btn--one">Edytuj</button>
+            <button class="btn btn--three">Usuń</button>
         </div>
     </div>
 </div>
