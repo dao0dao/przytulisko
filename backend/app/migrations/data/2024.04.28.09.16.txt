@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS przytulisko.pets
+(
+  id varchar(36) PRIMARY KEY,
+  age INT NOT NULL,
+  breed varchar(50) NOT NULL,
+  category varchar(10) NOT NULL,
+  description varchar(255) NOT NULL,
+  gender varchar(10) NOT NULL,
+  name varchar(50) NOT NULL,
+  name varchar(255) NOT NULL
+);
