@@ -6,12 +6,13 @@ import { BehaviorSubject, filter, map } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthStateService {
-  private authState: AuthState = { isLogin: false, login: '' };
+  private authState: AuthState = { isLogin: false, login: '', type: '' };
   private hasSingInEmiter = new BehaviorSubject<AuthState>({
     isLogin: false,
     login: '',
+    type: '',
   });
-  
+
   hasSingIn$ = this.hasSingInEmiter
     .asObservable()
     .pipe(map((state) => state.isLogin));
@@ -23,13 +24,12 @@ export class AuthStateService {
     return this.authState;
   }
 
-  signIn(login: string) {
-    this.authState = { isLogin: true, login };
-    this.hasSingInEmiter.next(this.authState);
+  getIsAdmin() {
+    return 'admin' === this.authState.type;
   }
 
   signOut() {
-    this.authState = { isLogin: false, login: '' };
+    this.authState = { isLogin: false, login: '', type: '' };
     this.hasSingInEmiter.next(this.authState);
   }
 

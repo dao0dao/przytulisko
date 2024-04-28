@@ -52,7 +52,7 @@ export const isPersonSessionExist = async (session_cookie: string) => {
   if (!person) {
     return person;
   }
-  return person.login;
+  return person;
 };
 
 export const removeSessionByCookieKey = (session_cookie: string) => {

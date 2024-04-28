@@ -37,9 +37,11 @@ export const getPersonById = async (id: string): Promise<false | Person | null> 
     return false;
   }
   if (!admin && user) {
+    user.type = "user";
     return user;
   }
   if (admin && !user) {
+    admin.type = "admin";
     return admin;
   }
   if (admin && user) {
@@ -56,9 +58,11 @@ export const getPersonByResetToken = async (reset_token: string): Promise<false 
     return false;
   }
   if (!admin && user) {
+    user.type = "user";
     return user;
   }
   if (admin && !user) {
+    admin.type = "admin";
     return admin;
   }
   if (admin && user) {

@@ -18,5 +18,8 @@
             <p>płeć: {{pet.gender}}</p>
         </div>
         <p class="description">{{pet.description}}</p>
+        <div *ngIf="authState.getIsAdmin()">
+            <button></button>
+        </div>
     </div>
 </div>

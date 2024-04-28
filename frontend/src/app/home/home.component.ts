@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Pet } from '../infrastructure/models/pet.model';
+import { AuthStateService } from '../authorization/auth-state.service';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +8,8 @@ import { Pet } from '../infrastructure/models/pet.model';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
+  constructor(public authState: AuthStateService) {}
 
-  constructor(){
-    
-  }
-  
   pets: Pet[] = [
     {
       age: 4,
