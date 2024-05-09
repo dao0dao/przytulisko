@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Pet } from '../infrastructure/models/pet.model';
 import { AuthStateService } from '../authorization/auth-state.service';
+import { HttpPetsService } from '../http-services/http-pets.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,41 +10,41 @@ import { AuthStateService } from '../authorization/auth-state.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  constructor(public authState: AuthStateService) {}
+  constructor(
+    public authState: AuthStateService,
+    private httpPets: HttpPetsService,
+    private router: Router
+  ) {
+    this.choseCategory();
+  }
 
-  pets: Pet[] = [
-    {
-      age: 4,
-      breed: 'abysyński',
-      category: 'cat',
-      description:
-        'Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur?',
-      gender: 'female',
-      id: 'jakies id',
-      name: 'Tajga',
-      imageUrl: 'https://cdn2.thecatapi.com/images/d56.jpg',
-    },
-    {
-      age: 4,
-      breed: 'abysyński',
-      category: 'cat',
-      description:
-        'Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur?',
-      gender: 'female',
-      id: 'jakies id2',
-      name: 'Leopold',
-      imageUrl: 'https://cdn2.thecatapi.com/images/MTUwNDc5Mw.jpg',
-    },
-    {
-      age: 4,
-      breed: 'abysyński',
-      category: 'cat',
-      description:
-        'Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur?',
-      gender: 'female',
-      id: 'jakies id3',
-      name: 'Sajmon',
-      imageUrl: 'https://cdn2.thecatapi.com/images/MjA0MTM5OA.jpg',
-    },
-  ];
+  pets: Pet[] = [];
+
+  choseCategory() {
+    const url = this.router.url;
+    switch (url) {
+      case '/cats':
+        this.httpPets.getCats().subscribe({
+          next: (cats) => {
+            this.pets = cats;
+          },
+        });
+        break;
+      case '/dogs':
+        this.httpPets.getDogs().subscribe({
+          next: (dogs) => {
+            this.pets = dogs;
+          },
+        });
+        break;
+
+      default:
+        this.httpPets.getPets().subscribe({
+          next: (pets) => {
+            this.pets = pets;
+          },
+        });
+        break;
+    }
+  }
 }
