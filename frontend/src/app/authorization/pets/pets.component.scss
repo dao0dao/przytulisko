@@ -1,13 +1,35 @@
 @import "src/variables";
+.container {
+    width: fit-content;
+    margin: 0 auto;
+}
 p {
     margin: 1rem 0;
     text-align: center;
     font-size: 16px;
 }
+.btn {
+    min-width: 50px;
+    margin: 10px auto;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    &--add {
+        margin-right: 10px;
+    }
+}
+.table {
+    overflow: auto;
+    padding: 0 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
 table {
+    position: relative;
     margin: 1rem auto;
     border-collapse: collapse;
-    position: relative;
     th,
     td {
         border: 1px solid #dddddd;
@@ -21,11 +43,13 @@ table {
         background-color: $colorText;
         color: white;
     }
-}
-.btn {
-    min-width: 50px;
-    margin: 10px auto;
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 12px;
+    tbody {
+        td:nth-child(7) {
+            p {
+                overflow: auto;
+                max-width: 300px;
+                padding: 15px 0;
+            }
+        }
+    }
 }
