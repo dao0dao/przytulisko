@@ -16,6 +16,7 @@ import { ResetPasswordComponent } from './authorization/reset-password/reset-pas
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { PetsComponent } from './authorization/pets/pets.component';
+import { PetAddEditComponent } from './authorization/pet-add-edit/pet-add-edit.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { PetsComponent } from './authorization/pets/pets.component';
     ResetPasswordComponent,
     HomeComponent,
     PetsComponent,
+    PetAddEditComponent
   ],
   imports: [
     BrowserModule,

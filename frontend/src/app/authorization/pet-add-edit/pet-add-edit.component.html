@@ -1,0 +1,81 @@
+<p
+    class="title"
+    *ngIf="petName; else newPet"
+>
+    Edytujesz podopiecznego o imieniu {{petName}}
+</p>
+<ng-template #newPet>Dodaje nowego podopiecznego</ng-template>
+<div class="form">
+    <form>
+        <div class="block">
+            <input
+                type="text"
+                placeholder="Imię"
+            >
+            <svg>
+                <use [attr.xlink:href]="svgLink+'icon-login'"></use>
+            </svg>
+            <p class="error">wymagane pole</p>
+        </div>
+        <div class="block">
+            <textarea
+                type="text"
+                placeholder="opis zwierzaka"
+            ></textarea>
+            <svg>
+                <use [attr.xlink:href]="svgLink+'icon-login'"></use>
+            </svg>
+            <p class="error">wymagane pole</p>
+        </div>
+        <div class="block">
+            <input
+                type="text"
+                placeholder="wiek"
+            >
+            <svg>
+                <use [attr.xlink:href]="svgLink+'icon-login'"></use>
+            </svg>
+            <p class="error">wymagane pole</p>
+        </div>
+        <div class="block">
+            <input
+                type="text"
+                placeholder="link https do zdjęcia"
+            >
+            <svg>
+                <use [attr.xlink:href]="svgLink+'icon-login'"></use>
+            </svg>
+            <p class="error">wymagane pole</p>
+        </div>
+        <div class="block">
+            <input
+                type="text"
+                placeholder="rasa"
+            >
+            <svg>
+                <use [attr.xlink:href]="svgLink+'icon-login'"></use>
+            </svg>
+            <p class="error">wymagane pole</p>
+        </div>
+        <div class="block">
+            <input
+                type="text"
+                placeholder="płeć"
+            >
+            <svg>
+                <use [attr.xlink:href]="svgLink+'icon-login'"></use>
+            </svg>
+            <p class="error">wymagane pole</p>
+        </div>
+        <div class="block">
+            <input
+                type="text"
+                placeholder="kategoria"
+            >
+            <svg>
+                <use [attr.xlink:href]="svgLink+'icon-login'"></use>
+            </svg>
+            <p class="error">wymagane pole</p>
+        </div>
+    </form>
+</div>
