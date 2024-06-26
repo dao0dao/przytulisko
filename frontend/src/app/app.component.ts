@@ -1,9 +1,11 @@
 import { Component, HostBinding, HostListener } from '@angular/core';
 import { InfoModalService } from './infrastructure/services/info-modal.service';
 import { appAnimations } from './app-animations';
-import { AppHttpService } from './app-http.service';
-import { AuthStateService } from './authorization/auth-state.service';
 import { NavigationMenuService } from './navigation/navigation-menu.service';
+import { Store } from '@ngrx/store';
+import { AppStateInterface } from './types/app.state.interface';
+import * as AuthActions from 'src/app/store/authorization/actions';
+
 
 @Component({
   selector: 'app-root',
@@ -14,15 +16,10 @@ import { NavigationMenuService } from './navigation/navigation-menu.service';
 export class AppComponent {
   constructor(
     public infoModal: InfoModalService,
-    private http: AppHttpService,
-    private authState: AuthStateService,
-    public navigationMenu: NavigationMenuService
+    public navigationMenu: NavigationMenuService,
+    private store: Store<AppStateInterface>
   ) {
-    this.http.isLogin().subscribe({
-      next: (state) => {
-        this.authState.setState(state);
-      },
-    });
+    this.store.dispatch(AuthActions.checkLoginUser())
   }
 
   @HostBinding('style.height') private hostHeight = window.innerHeight + 'px';

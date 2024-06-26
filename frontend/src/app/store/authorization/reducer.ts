@@ -22,11 +22,11 @@ export const AuthorizationReducer = createReducer(
   initialState,
   on(AuthActions.loginUserSuccess, (state, actions) => {
     const { isLogin, login, type, isSuperAdmin } = actions.authorization;
-    return { ...state, isLogin, login, type, isSuperAdmin };
+    return { ...state, isLogin, login, type, isSuperAdmin, error: null };
   }),
   on(AuthActions.loginUserFail, (state, actions) => ({
     ...resetState,
     error: actions.error,
   })),
-  on(AuthActions.logoutUser, () => ({ ...resetState }))
+  on(AuthActions.logoutUserAPI, () => ({ ...resetState }))
 );

@@ -7,7 +7,7 @@
         >
         <p class="text">Przytulisko dla zwierząt</p>
         <button
-            *ngIf="authState.hasSingIn$ |async"
+            *ngIf="isLogin$ |async"
             class="btn"
             (click)="toggleProfile()"
         >
@@ -83,7 +83,7 @@
                 </a>
             </div>
             <div
-                *ngIf="!(authState.hasSingIn$ | async)"
+                *ngIf="!(isLogin$ | async)"
                 @elementFour
                 class="element"
             >
@@ -117,7 +117,7 @@
                         <use [attr.xlink:href]="svgLink+'icon-edit-profile'"></use>
                     </svg>
                     <span>
-                        konto: {{authState.authAccount$ | async}}
+                        konto: {{username$ | async}}
                     </span>
                 </a>
             </div>

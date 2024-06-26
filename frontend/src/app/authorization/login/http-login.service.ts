@@ -18,4 +18,8 @@ export class HttpLoginService {
   logOut(){
     return this.http.get(apiLink()+ 'logout')
   }
+
+  checkIsLogin() {
+    return this.http.get<AuthState>(apiLink() + 'session');
+  }
 }

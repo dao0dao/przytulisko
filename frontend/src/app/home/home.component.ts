@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { Pet } from '../infrastructure/models/pet.model';
-import { AuthStateService } from '../authorization/auth-state.service';
 import { HttpPetsService } from '../http-services/http-pets.service';
 import { Router } from '@angular/router';
+import { Store, select } from '@ngrx/store';
+import { isUserAdminSelector } from '../store/authorization/selectors';
+import { Observable } from 'rxjs';
+import { AppStateInterface } from '../types/app.state.interface';
 
 @Component({
   selector: 'app-home',
@@ -11,13 +14,14 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
   constructor(
-    public authState: AuthStateService,
     private httpPets: HttpPetsService,
-    private router: Router
+    private router: Router,
+    private store: Store<AppStateInterface>
   ) {
     this.choseCategory();
+    this.isAdmin$ = store.pipe(select(isUserAdminSelector));
   }
-
+  isAdmin$: Observable<boolean>;
   pets: Pet[] = [];
 
   choseCategory() {

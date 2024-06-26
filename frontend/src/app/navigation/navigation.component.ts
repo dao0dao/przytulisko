@@ -1,11 +1,14 @@
 import { Component, OnDestroy } from '@angular/core';
 import { svgLink } from '../utilities';
 import { animations } from './animations';
-import { AuthStateService } from '../authorization/auth-state.service';
 import { HttpLoginService } from '../authorization/login/http-login.service';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { NavigationMenuService } from './navigation-menu.service';
+import { Store, select } from '@ngrx/store';
+import { AppStateInterface } from '../types/app.state.interface';
+import { isLoginSelector, loginUserNameSelector } from '../store/authorization/selectors';
+import * as AuthActions from 'src/app/store/authorization/actions';
 
 @Component({
   selector: 'app-navigation',
@@ -15,10 +18,10 @@ import { NavigationMenuService } from './navigation-menu.service';
 })
 export class NavigationComponent implements OnDestroy {
   constructor(
-    public authState: AuthStateService,
     private http: HttpLoginService,
     private router: Router,
-    private navigationService: NavigationMenuService
+    private navigationService: NavigationMenuService,
+    private store: Store<AppStateInterface>
   ) {
     const s = this.navigationService.closeMenu$.subscribe({
       next: () => {
@@ -26,9 +29,17 @@ export class NavigationComponent implements OnDestroy {
         this.isProfileOpen = false;
       },
     });
-    this.subscriptions.push(s);
+    const s1 = this.store.pipe(select(isLoginSelector)).subscribe({
+      next: (isLogin) => {
+        isLogin ? this.router.navigate(['/']) : null;
+      },
+    });
+    this.subscriptions.push(s, s1);
+    this.isLogin$ = this.store.pipe(select(isLoginSelector));
+    this.username$ = this.store.pipe(select(loginUserNameSelector))
   }
-
+  isLogin$: Observable<boolean>;
+  username$: Observable<string>;
   svgLink = svgLink;
   isNavigationOpen: boolean = false;
   isProfileOpen: boolean = false;
@@ -59,15 +70,7 @@ export class NavigationComponent implements OnDestroy {
   }
 
   logOut() {
-    this.http.logOut().subscribe({
-      next: () => {
-        this.closeProfile();
-        this.authState.signOut();
-        this.router.navigate(['/']);
-      },
-      error: () => {
-        this.closeProfile();
-      },
-    });
+    this.closeProfile();
+    this.store.dispatch(AuthActions.logoutUser());
   }
 }

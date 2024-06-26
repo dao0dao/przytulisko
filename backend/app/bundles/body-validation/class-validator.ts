@@ -9,6 +9,7 @@ export class Validator<BodyType> {
 
   async getIsCorrectClass() {
     const class_keys = Object.keys(this).filter((key) => "data" !== key);
+    console.log(class_keys, this.data)
     for (const key in this.data) {
       if (!class_keys.includes(key)) {
         console.log("invalid keys");
