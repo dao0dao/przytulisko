@@ -1,8 +1,8 @@
-$colorActive: hsl(103, 23%, 26%);
-$colorText: hsl(64, 42%, 32%);
-$colorBackground: hsl(33, 37%, 52%);
-
-$botShadow: 0 4px 4px hsla(33, 37%, 52%, 0.25);
-$botShadowOne: 0 4px 4px hsla(103, 23%, 26%, 0.25);
-$botShadowTwo: 0 4px 4px hsla(64, 42%, 32%, 0.25);
-$botShadowThree: 0 4px 4px hsla(33, 37%, 52%, 0.25);
+$colors: (
+    primary: hsl(103, 23%, 26%),
+    secondary: hsl(283, 35%, 40%),
+    active: hsl(23, 80%, 45%),
+    neutral: hsl(0, 0%, 95%),
+    ink: hsl(64, 50%, 15%),
+    warning: hsl(5, 85%, 55%)
+);

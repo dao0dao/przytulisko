@@ -5,35 +5,37 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    color: $colorText;
+    color: map-get($map: $colors, $key: text);
 }
-body{
+body {
     overflow: auto;
 }
+
 .btn {
     padding: 10px;
+    border: none;
     border-radius: 20px;
     display: block;
     color: white;
     cursor: pointer;
-    &--one {
-        border: 1px solid $colorActive;
-        box-shadow: $botShadowOne;
-        background-color: $colorActive;
-    }
-    &--two {
-        border: 1px solid $colorText;
-        box-shadow: $botShadowTwo;
-        background-color: $colorText;
-    }
-    &--three {
-        border: 1px solid $colorBackground;
-        box-shadow: $botShadowThree;
-        background-color: $colorBackground;
-    }
     &[disabled] {
         filter: grayscale(1);
         cursor: auto;
         pointer-events: none;
+    }
+}
+@each $name, $color in $colors {
+    .bg-#{$name} {
+        background-color: $color;
+    }
+    .btn-#{$name} {
+        background-color: $color;
+        box-shadow: 0 4px 4px $color;
+    }
+    .btn-outline-#{$name} {
+        border: 1px solid $color;
+        box-shadow: 0 4px 4px $color;
+        background-color: hsl(0, 0%, 100%);
+        color: hsl(0, 0%, 100%);
     }
 }

@@ -9,7 +9,7 @@ nav {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    box-shadow: $botShadow;
+    box-shadow: 0 4px 4px map-get($map: $colors, $key: primary);
     background-color: white;
 }
 .logo {
@@ -17,7 +17,7 @@ nav {
 }
 .text {
     margin: 0 auto;
-    color: $colorText;
+    color: map-get($map: $colors, $key: ink);
 }
 .btn {
     margin: 0 10px 0 5px;
@@ -27,7 +27,7 @@ nav {
     svg {
         width: 30px;
         height: 30px;
-        fill: $colorActive;
+        fill: map-get($map: $colors, $key: active);
     }
 }
 .burger {
@@ -43,7 +43,7 @@ nav {
     cursor: pointer;
     .line {
         height: 3px;
-        background-color: $colorActive;
+        background-color: map-get($map: $colors, $key: active);
         border-radius: 20px;
         transform-origin: left center;
         transition:
@@ -83,7 +83,7 @@ nav {
             position: relative;
             width: 100%;
             padding: 10px 0;
-            box-shadow: $botShadow;
+            box-shadow: 0 4px 4px map-get($map: $colors, $key: primary);
             background-color: white;
             &:last-child {
                 padding: 20px 0;
@@ -103,12 +103,12 @@ nav {
             svg {
                 max-height: 50px;
                 max-width: 50px;
-                fill: $colorActive;
-                stroke: $colorActive;
+                fill: map-get($map: $colors, $key: active);
+                stroke: map-get($map: $colors, $key: active);
             }
             span {
                 margin: 0 auto;
-                color: $colorActive;
+                color: map-get($map: $colors, $key: active);
             }
             &:nth-child(1) {
                 z-index: 5;

@@ -9,7 +9,7 @@ h3 {
     width: 90%;
     max-width: 400px;
     border-radius: 20px;
-    box-shadow: $botShadowThree;
+    box-shadow: 0 4px 4px map-get($map: $colors, $key: primary)Three;
     display: flex;
     flex-wrap: wrap;
     .image {

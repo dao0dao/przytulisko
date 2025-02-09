@@ -1,3 +1,3 @@
 ALTER TABLE przytulisko.admin
-ADD COLUMN IF NOT EXISTS reset_token VARCHAR(36),
-ADD COLUMN IF NOT EXISTS reset_token_expired_date DATETIME;
+ADD COLUMN reset_token VARCHAR(36),
+ADD COLUMN reset_token_expired_date DATETIME;

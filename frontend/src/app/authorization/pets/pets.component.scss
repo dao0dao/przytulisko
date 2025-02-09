@@ -40,7 +40,7 @@ table {
     th {
         position: sticky;
         top: 0;
-        background-color: $colorText;
+        background-color: map-get($map: $colors, $key: ink);
         color: white;
     }
     tbody {
