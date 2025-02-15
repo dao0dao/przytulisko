@@ -15,13 +15,13 @@
         transform: translateY(-50%);
         max-width: 30px;
         max-height: 30px;
-        fill: map-get($map: $colors, $key: neutral)
-        filter: drop-shadow(0 4px 4px map-get($map: $colors, $key: primary));
+        fill: map-get($map: $colors, $key: secondary);
+        filter: drop-shadow(map-get($map: $colors, $key: secondary));
     }
     input {
         padding: 10px 10px 10px 40px;
         border-width: 0 0 2px 0;
-        border-color: map-get($map: $colors, $key: neutral)
+        border-color: map-get($map: $colors, $key: secondary);
         outline: none;
         &:focus,
         &:focus-visible {
@@ -31,18 +31,11 @@
         &:focus + svg,
         &:focus-visible + svg {
             fill: map-get($map: $colors, $key: active);
-            filter: drop-shadow(0 4px 4px map-get($map: $colors, $key: primary)One);
+            filter: drop-shadow(map-get($map: $colors, $key: active));
         }
     }
     .btn {
         margin-left: auto;
-        padding: 10px;
-        border: 1px solid map-get($map: $colors, $key: active);
-        border-radius: 20px;
-        box-shadow: 0 4px 4px map-get($map: $colors, $key: primary)One;
-        display: block;
-        background-color: map-get($map: $colors, $key: active);
-        color: white;
     }
     &:last-child {
         margin-top: 3rem;

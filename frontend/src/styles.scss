@@ -30,12 +30,15 @@ body {
     }
     .btn-#{$name} {
         background-color: $color;
-        box-shadow: 0 4px 4px $color;
+        box-shadow: 0 0px 4px $color;
     }
     .btn-outline-#{$name} {
         border: 1px solid $color;
-        box-shadow: 0 4px 4px $color;
+        box-shadow: 0 0px 4px $color;
         background-color: hsl(0, 0%, 100%);
         color: hsl(0, 0%, 100%);
+    }
+    .shadow-#{$name} {
+        box-shadow: 0 0px 4px $color;
     }
 }

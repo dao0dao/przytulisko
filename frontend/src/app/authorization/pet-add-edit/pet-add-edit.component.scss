@@ -10,13 +10,13 @@
         transform: translateY(-50%);
         max-width: 30px;
         max-height: 30px;
-        fill: map-get($map: $colors, $key: neutral)
+        fill: map-get($map: $colors, $key: neutral);
         filter: drop-shadow(0 4px 4px map-get($map: $colors, $key: primary));
     }
     input {
         padding: 10px 10px 10px 40px;
         border-width: 0 0 2px 0;
-        border-color: map-get($map: $colors, $key: neutral)
+        border-color: map-get($map: $colors, $key: neutral);
         outline: none;
         &:focus,
         &:focus-visible {

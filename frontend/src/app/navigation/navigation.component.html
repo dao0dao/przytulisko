@@ -1,5 +1,5 @@
 <div class="container">
-    <nav>
+    <nav class="shadow-primary">
         <img
             class="logo"
             src="assets/images/logo.png"
@@ -41,7 +41,7 @@
         <div class="navList">
             <div
                 @elementOne
-                class="element"
+                class="element shadow-primary"
             >
                 <a
                     routerLink="/"
@@ -55,7 +55,7 @@
             </div>
             <div
                 @elementTwo
-                class="element"
+                class="element shadow-primary"
             >
                 <a
                     routerLink="cats"
@@ -69,7 +69,7 @@
             </div>
             <div
                 @elementThree
-                class="element"
+                class="element shadow-primary"
             >
 
                 <a
@@ -85,7 +85,7 @@
             <div
                 *ngIf="!(isLogin$ | async)"
                 @elementFour
-                class="element"
+                class="element shadow-primary"
             >
                 <a
                     routerLink="login"
