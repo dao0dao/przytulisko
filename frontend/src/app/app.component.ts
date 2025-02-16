@@ -1,7 +1,7 @@
 import { Component, HostBinding, HostListener } from '@angular/core';
-import { InfoModalService } from './infrastructure/services/info-modal.service';
+import { InfoModalService } from './components/infrastructure/services/info-modal.service';
 import { appAnimations } from './app-animations';
-import { NavigationMenuService } from './navigation/navigation-menu.service';
+import { NavigationMenuService } from './components/navigation/navigation-menu.service';
 import { Store } from '@ngrx/store';
 import { AppStateInterface } from './types/app.state.interface';
 import * as AuthActions from 'src/app/store/authorization/actions';

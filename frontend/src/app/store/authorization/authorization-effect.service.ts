@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { HttpLoginService } from 'src/app/authorization/login/http-login.service';
+import { HttpLoginService } from 'src/app/components/authorization/login/http-login.service';
 import * as AuthActions from './actions';
 import { catchError, map, mergeMap, of } from 'rxjs';
 import { AuthorizationStateInterface } from 'src/app/types/authorization/authorization.state.interface';

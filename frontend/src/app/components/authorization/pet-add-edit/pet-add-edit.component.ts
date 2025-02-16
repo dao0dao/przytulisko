@@ -6,9 +6,9 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { mergeMap, of, take } from 'rxjs';
-import { HttpPetsService } from 'src/app/http-services/http-pets.service';
-import { Pet } from 'src/app/infrastructure/models/pet.model';
-import { newPet, redirectToRoot } from 'src/app/infrastructure/symbols';
+import { HttpPetsService } from 'src/app/components/http-services/http-pets.service';
+import { Pet } from 'src/app/components/infrastructure/models/pet.model';
+import { newPet, redirectToRoot } from 'src/app/components/infrastructure/symbols';
 import { svgLink } from 'src/app/utilities';
 
 @Component({

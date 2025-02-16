@@ -1,13 +1,13 @@
 import { Component, OnDestroy } from '@angular/core';
-import { svgLink } from '../utilities';
+import { svgLink } from '../../utilities';
 import { animations } from './animations';
 import { HttpLoginService } from '../authorization/login/http-login.service';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { NavigationMenuService } from './navigation-menu.service';
 import { Store, select } from '@ngrx/store';
-import { AppStateInterface } from '../types/app.state.interface';
-import { isLoginSelector, loginUserNameSelector } from '../store/authorization/selectors';
+import { AppStateInterface } from '../../types/app.state.interface';
+import { isLoginSelector, loginUserNameSelector } from '../../store/authorization/selectors';
 import * as AuthActions from 'src/app/store/authorization/actions';
 
 @Component({

@@ -3,9 +3,9 @@ import { Pet } from '../infrastructure/models/pet.model';
 import { HttpPetsService } from '../http-services/http-pets.service';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { isUserAdminSelector } from '../store/authorization/selectors';
+import { isUserAdminSelector } from '../../store/authorization/selectors';
 import { Observable } from 'rxjs';
-import { AppStateInterface } from '../types/app.state.interface';
+import { AppStateInterface } from '../../types/app.state.interface';
 
 @Component({
   selector: 'app-home',

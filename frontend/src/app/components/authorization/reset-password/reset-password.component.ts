@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { HttpResetPasswordService } from './http-reset-password.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResetPasswordData } from './reset-password.model';
-import { InfoModalService } from 'src/app/infrastructure/services/info-modal.service';
+import { InfoModalService } from 'src/app/components/infrastructure/services/info-modal.service';
 
 @Component({
   selector: 'app-reset-password',
